@@ -15,34 +15,97 @@
         content="JuegosGratis - juega videojuegos gratis directamente desde tu navegador."
     >
 
-    <title>JuegosGratis</title>
+    <meta
+        name="theme-color"
+        content="#07101a"
+    >
+
+    <title>JuegosGratis - Juegos Gratis Online</title>
 
 
     <style>
 
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
         :root {
 
-            --bg-dark: #07101a;
-            --bg-header: #081522;
-            --bg-card: #0c1b2b;
-            --card-border: #1b354d;
+            --bg:
+                #050b12;
 
-            --accent-cyan: #00f2fe;
-            --accent-purple: #7928ca;
-            --accent-pink: #ff3355;
+            --bg-secondary:
+                #081522;
 
-            --text-main: #f1f5f9;
-            --text-muted: #8fa3b8;
+            --bg-card:
+                #0b1827;
+
+            --bg-card-hover:
+                #102238;
+
+            --border:
+                #19334b;
+
+            --cyan:
+                #00f2fe;
+
+            --blue:
+                #168cff;
+
+            --purple:
+                #7928ca;
+
+            --pink:
+                #ff3355;
+
+            --text:
+                #f4f7fb;
+
+            --muted:
+                #8da1b5;
+
+            --max-width:
+                1250px;
 
         }
 
 
+        /* =====================================================
+           RESET
+        ===================================================== */
+
         * {
 
-            box-sizing: border-box;
+            box-sizing:
+                border-box;
 
-            margin: 0;
-            padding: 0;
+            margin:
+                0;
+
+            padding:
+                0;
+
+        }
+
+
+        html {
+
+            scroll-behavior:
+                smooth;
+
+        }
+
+
+        body {
+
+            min-height:
+                100vh;
+
+            background:
+                var(--bg);
+
+            color:
+                var(--text);
 
             font-family:
                 system-ui,
@@ -50,132 +113,215 @@
                 BlinkMacSystemFont,
                 "Segoe UI",
                 Roboto,
+                Arial,
                 sans-serif;
 
         }
 
 
-        html {
+        button,
+        input {
 
-            scroll-behavior: smooth;
-
-        }
-
-
-        body {
-
-            background:
-                var(--bg-dark);
-
-            color:
-                var(--text-main);
-
-            min-height: 100vh;
+            font-family:
+                inherit;
 
         }
 
 
-        /* ==============================
+        button {
+
+            cursor:
+                pointer;
+
+        }
+
+
+        /* =====================================================
            HEADER
-        ============================== */
+        ===================================================== */
 
         header {
 
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                1000;
+
             background:
-                var(--bg-header);
+                rgba(5,11,18,.94);
+
+            backdrop-filter:
+                blur(12px);
 
             border-bottom:
-                1px solid var(--card-border);
-
-            position: sticky;
-
-            top: 0;
-
-            z-index: 1000;
+                1px solid var(--border);
 
         }
 
 
         .header-inner {
 
-            max-width: 1200px;
+            width:
+                min(100% - 32px, var(--max-width));
 
-            margin: auto;
+            min-height:
+                78px;
 
-            padding: 12px 20px;
+            margin:
+                auto;
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: space-between;
-
-            gap: 20px;
+            gap:
+                30px;
 
         }
 
 
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
         .logo {
 
-            display: flex;
+            width:
+                220px;
 
-            align-items: center;
+            height:
+                64px;
 
-            text-decoration: none;
+            flex-shrink:
+                0;
 
-            line-height: 0;
+            display:
+                flex;
 
-            width: 190px;
+            align-items:
+                center;
 
-            height: 55px;
+            text-decoration:
+                none;
 
-            flex-shrink: 0;
+            overflow:
+                hidden;
 
         }
 
 
         .logo img {
 
-            display: block;
+            width:
+                220px;
 
-            width: 190px !important;
+            height:
+                64px;
 
-            height: auto !important;
+            display:
+                block;
 
-            max-width: 190px !important;
+            object-fit:
+                contain;
 
-            max-height: 55px !important;
+            object-position:
+                left center;
 
-            object-fit: contain;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        nav {
+
+            margin-left:
+                auto;
 
         }
 
 
         .nav-links {
 
-            display: flex;
+            display:
+                flex;
 
-            gap: 15px;
+            align-items:
+                center;
 
-            list-style: none;
+            gap:
+                8px;
+
+            list-style:
+                none;
 
         }
 
 
         .nav-links button {
 
-            background: none;
+            position:
+                relative;
 
-            border: none;
+            border:
+                none;
+
+            background:
+                transparent;
 
             color:
-                var(--text-muted);
+                var(--muted);
 
-            cursor: pointer;
+            padding:
+                10px 12px;
 
-            font-weight: 700;
+            font-size:
+                .9rem;
 
-            padding: 8px;
+            font-weight:
+                800;
+
+            transition:
+                color .2s;
+
+        }
+
+
+        .nav-links button::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            left:
+                12px;
+
+            right:
+                12px;
+
+            bottom:
+                3px;
+
+            height:
+                2px;
+
+            background:
+                var(--cyan);
+
+            transform:
+                scaleX(0);
+
+            transition:
+                transform .2s;
 
         }
 
@@ -183,35 +329,106 @@
         .nav-links button:hover {
 
             color:
-                var(--accent-cyan);
+                white;
 
         }
 
 
+        .nav-links button:hover::after {
+
+            transform:
+                scaleX(1);
+
+        }
+
+
+        /* =====================================================
+           SEARCH
+        ===================================================== */
+
         .search-box {
 
-            flex-shrink: 0;
+            width:
+                230px;
+
+            flex-shrink:
+                0;
+
+            position:
+                relative;
+
+        }
+
+
+        .search-box::before {
+
+            content:
+                "⌕";
+
+            position:
+                absolute;
+
+            left:
+                14px;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-52%);
+
+            color:
+                var(--muted);
+
+            font-size:
+                22px;
+
+            pointer-events:
+                none;
 
         }
 
 
         .search-box input {
 
-            width: 220px;
+            width:
+                100%;
 
-            padding: 10px 15px;
+            height:
+                44px;
 
-            border-radius: 20px;
+            padding:
+                0 15px 0 42px;
 
             border:
-                1px solid var(--card-border);
+                1px solid var(--border);
+
+            border-radius:
+                24px;
+
+            outline:
+                none;
 
             background:
-                #0d1f35;
+                #0b1b2d;
 
-            color: white;
+            color:
+                white;
 
-            outline: none;
+            font-size:
+                .9rem;
+
+            transition:
+                border-color .2s,
+                box-shadow .2s;
+
+        }
+
+
+        .search-box input::placeholder {
+
+            color:
+                #6e8297;
 
         }
 
@@ -219,129 +436,447 @@
         .search-box input:focus {
 
             border-color:
-                var(--accent-cyan);
+                var(--cyan);
+
+            box-shadow:
+                0 0 0 3px rgba(0,242,254,.08);
 
         }
 
 
-        /* ==============================
+        /* =====================================================
            MAIN
-        ============================== */
+        ===================================================== */
 
         main {
 
-            max-width: 1200px;
+            width:
+                min(100% - 32px, var(--max-width));
 
-            margin: auto;
+            margin:
+                auto;
 
-            padding: 30px 20px;
+            padding:
+                35px 0 60px;
 
         }
 
 
-        /* ==============================
+        /* =====================================================
            HERO
-        ============================== */
+        ===================================================== */
 
         .hero {
 
-            padding: 50px 30px;
+            position:
+                relative;
 
-            border-radius: 15px;
+            min-height:
+                360px;
 
-            margin-bottom: 30px;
+            display:
+                flex;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(0,242,254,.08),
-                    rgba(121,40,202,.15)
-                );
+            align-items:
+                center;
+
+            overflow:
+                hidden;
+
+            padding:
+                55px;
+
+            margin-bottom:
+                30px;
 
             border:
-                1px solid var(--card-border);
+                1px solid var(--border);
+
+            border-radius:
+                22px;
+
+            background:
+                radial-gradient(
+                    circle at 85% 50%,
+                    rgba(0,242,254,.12),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 70% 80%,
+                    rgba(121,40,202,.2),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #091a29,
+                    #11132c
+                );
+
+        }
+
+
+        .hero::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                300px;
+
+            height:
+                300px;
+
+            right:
+                70px;
+
+            top:
+                30px;
+
+            border:
+                1px solid rgba(0,242,254,.12);
+
+            border-radius:
+                50%;
+
+            box-shadow:
+                0 0 0 40px rgba(0,242,254,.02),
+                0 0 0 80px rgba(0,242,254,.015);
+
+        }
+
+
+        .hero-content {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            max-width:
+                650px;
+
+        }
+
+
+        .hero-badge {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                7px 12px;
+
+            margin-bottom:
+                18px;
+
+            border:
+                1px solid rgba(0,242,254,.2);
+
+            border-radius:
+                20px;
+
+            background:
+                rgba(0,242,254,.06);
+
+            color:
+                var(--cyan);
+
+            font-size:
+                .78rem;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .08em;
 
         }
 
 
         .hero h1 {
 
-            font-size: 3rem;
+            font-size:
+                clamp(3rem, 7vw, 5.4rem);
 
-            margin-bottom: 15px;
+            line-height:
+                .95;
+
+            letter-spacing:
+                -.05em;
+
+            margin-bottom:
+                22px;
 
         }
 
 
         .hero h1 span {
 
+            display:
+                block;
+
             color:
-                var(--accent-cyan);
+                var(--cyan);
+
+            text-shadow:
+                0 0 30px rgba(0,242,254,.18);
 
         }
 
 
         .hero p {
 
+            max-width:
+                600px;
+
             color:
-                var(--text-muted);
+                var(--muted);
 
-            max-width: 650px;
+            font-size:
+                1.05rem;
 
-            line-height: 1.6;
+            line-height:
+                1.7;
+
+            margin-bottom:
+                28px;
 
         }
 
 
-        /* ==============================
+        .hero-button {
+
+            border:
+                none;
+
+            padding:
+                13px 22px;
+
+            border-radius:
+                9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--cyan),
+                    var(--purple)
+                );
+
+            color:
+                white;
+
+            font-weight:
+                900;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.25);
+
+            transition:
+                transform .2s,
+                box-shadow .2s;
+
+        }
+
+
+        .hero-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(0,242,254,.15);
+
+        }
+
+
+        /* =====================================================
+           DECORACIÓN HERO
+        ===================================================== */
+
+        .hero-controller {
+
+            position:
+                absolute;
+
+            right:
+                80px;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-50%)
+                rotate(-8deg);
+
+            width:
+                230px;
+
+            height:
+                150px;
+
+            border-radius:
+                55px 55px 75px 75px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #172b42,
+                    #08131f
+                );
+
+            border:
+                2px solid #24425d;
+
+            box-shadow:
+                0 25px 50px rgba(0,0,0,.4);
+
+            opacity:
+                .95;
+
+        }
+
+
+        .hero-controller::before {
+
+            content:
+                "✚";
+
+            position:
+                absolute;
+
+            left:
+                42px;
+
+            top:
+                52px;
+
+            color:
+                #6e8297;
+
+            font-size:
+                35px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .hero-controller::after {
+
+            content:
+                "●  ●";
+
+            position:
+                absolute;
+
+            right:
+                38px;
+
+            top:
+                53px;
+
+            color:
+                var(--cyan);
+
+            font-size:
+                25px;
+
+            letter-spacing:
+                8px;
+
+        }
+
+
+        /* =====================================================
            ADS
-        ============================== */
+        ===================================================== */
 
         .ad-container {
 
-            min-height: 90px;
+            min-height:
+                90px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            margin:
+                30px 0;
 
             border:
-                1px dashed #29445c;
+                1px dashed #27445d;
 
-            display: flex;
+            border-radius:
+                12px;
 
-            justify-content: center;
-
-            align-items: center;
+            background:
+                rgba(8,21,34,.45);
 
             color:
-                #52677c;
+                #587087;
 
-            margin: 30px 0;
+            font-size:
+                .85rem;
 
-            border-radius: 10px;
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .08em;
 
         }
 
 
-        /* ==============================
-           SECTION
-        ============================== */
+        /* =====================================================
+           SECTION HEADER
+        ===================================================== */
 
         .section-header {
 
-            display: flex;
+            display:
+                flex;
 
-            justify-content: space-between;
+            align-items:
+                center;
 
-            align-items: center;
+            justify-content:
+                space-between;
 
-            gap: 15px;
+            gap:
+                15px;
 
-            margin-bottom: 20px;
+            margin:
+                45px 0 20px;
 
         }
 
 
         .section-title {
 
-            margin: 0;
+            font-size:
+                1.6rem;
+
+            font-weight:
+                900;
 
         }
 
@@ -349,54 +884,61 @@
         .game-count {
 
             color:
-                var(--text-muted);
+                var(--muted);
 
-            font-size: .85rem;
+            font-size:
+                .85rem;
 
         }
 
 
-        /* ==============================
+        /* =====================================================
            GAME GRID
-        ============================== */
+        ===================================================== */
 
         .games-grid {
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(
-                    auto-fill,
-                    minmax(180px, 1fr)
-                );
+                repeat(4, minmax(0, 1fr));
 
-            gap: 20px;
+            gap:
+                18px;
 
         }
 
 
-        /* ==============================
+        /* =====================================================
            GAME CARD
-        ============================== */
+        ===================================================== */
 
         .game-card {
+
+            min-width:
+                0;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                14px;
 
             background:
                 var(--bg-card);
 
-            border:
-                1px solid var(--card-border);
-
-            border-radius: 12px;
-
-            overflow: hidden;
-
-            cursor: pointer;
+            cursor:
+                pointer;
 
             transition:
                 transform .2s,
                 border-color .2s,
-                box-shadow .2s;
+                box-shadow .2s,
+                background .2s;
 
         }
 
@@ -407,163 +949,234 @@
                 translateY(-5px);
 
             border-color:
-                var(--accent-cyan);
+                var(--cyan);
+
+            background:
+                var(--bg-card-hover);
 
             box-shadow:
-                0 10px 25px
-                rgba(0,242,254,.15);
+                0 15px 35px rgba(0,0,0,.3);
 
         }
 
 
         .game-image {
 
-            width: 100%;
+            width:
+                100%;
 
             aspect-ratio:
-                1 / .75;
+                16 / 10;
+
+            overflow:
+                hidden;
 
             background:
-                #000;
-
-            overflow: hidden;
+                #02060a;
 
         }
 
 
         .game-image img {
 
-            width: 100%;
+            width:
+                100%;
 
-            height: 100%;
+            height:
+                100%;
 
-            object-fit: cover;
+            display:
+                block;
 
-            display: block;
+            object-fit:
+                cover;
+
+            transition:
+                transform .35s;
+
+        }
+
+
+        .game-card:hover
+        .game-image img {
+
+            transform:
+                scale(1.05);
 
         }
 
 
         .game-info {
 
-            padding: 15px;
+            padding:
+                13px;
 
         }
 
 
         .game-title {
 
-            font-weight: 800;
+            overflow:
+                hidden;
 
-            margin-bottom: 5px;
+            margin-bottom:
+                5px;
 
-            white-space: nowrap;
+            color:
+                white;
 
-            overflow: hidden;
+            font-size:
+                .95rem;
 
-            text-overflow: ellipsis;
+            font-weight:
+                800;
+
+            white-space:
+                nowrap;
+
+            text-overflow:
+                ellipsis;
 
         }
 
 
         .game-category {
 
+            overflow:
+                hidden;
+
+            margin-bottom:
+                12px;
+
             color:
-                var(--text-muted);
+                var(--muted);
 
-            font-size: .8rem;
+            font-size:
+                .75rem;
 
-            margin-bottom: 10px;
+            white-space:
+                nowrap;
 
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
+            text-overflow:
+                ellipsis;
 
         }
 
 
         .play-button {
 
+            width:
+                100%;
+
+            border:
+                none;
+
+            padding:
+                9px;
+
+            border-radius:
+                7px;
+
             background:
                 linear-gradient(
                     135deg,
-                    var(--accent-cyan),
-                    var(--accent-purple)
+                    var(--cyan),
+                    var(--purple)
                 );
 
-            border: none;
+            color:
+                white;
 
-            color: white;
+            font-size:
+                .82rem;
 
-            padding: 7px 12px;
+            font-weight:
+                900;
 
-            border-radius: 6px;
-
-            font-weight: 800;
-
-            cursor: pointer;
+            transition:
+                opacity .2s;
 
         }
 
 
         .play-button:hover {
 
-            opacity: .9;
+            opacity:
+                .88;
 
         }
 
 
-        /* ==============================
-           CARGAR MÁS
-        ============================== */
+        /* =====================================================
+           NO RESULTS
+        ===================================================== */
+
+        .no-results {
+
+            grid-column:
+                1 / -1;
+
+            padding:
+                70px 20px;
+
+            text-align:
+                center;
+
+            color:
+                var(--muted);
+
+        }
+
+
+        /* =====================================================
+           LOAD MORE
+        ===================================================== */
 
         .load-more-container {
 
-            display: flex;
+            display:
+                flex;
 
-            justify-content: center;
+            justify-content:
+                center;
 
-            align-items: center;
-
-            margin-top: 35px;
+            margin-top:
+                35px;
 
         }
 
 
         #loadMoreBtn {
 
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--accent-cyan),
-                    var(--accent-purple)
-                );
-
-            border: none;
-
-            color: white;
+            border:
+                1px solid #284762;
 
             padding:
                 12px 25px;
 
-            border-radius: 8px;
+            border-radius:
+                9px;
 
-            font-weight: 800;
+            background:
+                #0b1c2e;
 
-            font-size: .95rem;
+            color:
+                white;
 
-            cursor: pointer;
+            font-weight:
+                800;
 
             transition:
-                transform .2s,
-                opacity .2s;
+                border-color .2s,
+                transform .2s;
 
         }
 
 
         #loadMoreBtn:hover {
+
+            border-color:
+                var(--cyan);
 
             transform:
                 translateY(-2px);
@@ -571,95 +1184,84 @@
         }
 
 
-        #loadMoreBtn:disabled {
-
-            opacity: .5;
-
-            cursor: default;
-
-            transform: none;
-
-        }
-
-
-        /* ==============================
-           SIN RESULTADOS
-        ============================== */
-
-        .no-results {
-
-            grid-column:
-                1 / -1;
-
-            text-align: center;
-
-            padding: 50px 20px;
-
-            color:
-                var(--text-muted);
-
-        }
-
-
-        /* ==============================
-           PLAYER
-        ============================== */
+        /* =====================================================
+           GAME PLAYER
+        ===================================================== */
 
         #game-container {
 
-            display: none;
+            display:
+                none;
 
-            position: fixed;
+            position:
+                fixed;
 
-            inset: 0;
+            inset:
+                0;
 
-            z-index: 9999;
+            z-index:
+                9999;
+
+            padding:
+                20px;
+
+            overflow:
+                auto;
 
             background:
                 rgba(0,0,0,.96);
-
-            padding: 20px;
-
-            overflow: auto;
 
         }
 
 
         .game-player {
 
-            width: 100%;
+            width:
+                100%;
 
-            max-width: 1100px;
+            max-width:
+                1150px;
 
-            margin: auto;
+            margin:
+                auto;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid var(--cyan);
+
+            border-radius:
+                12px;
 
             background:
                 #050b12;
 
-            border:
-                1px solid var(--accent-cyan);
-
-            border-radius: 12px;
-
-            overflow: hidden;
+            box-shadow:
+                0 25px 80px rgba(0,0,0,.6);
 
         }
 
 
         .player-header {
 
-            min-height: 55px;
+            min-height:
+                58px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
 
             padding:
-                10px 15px;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            gap: 10px;
+                10px 14px;
 
             background:
                 #081522;
@@ -669,199 +1271,212 @@
 
         #game-title {
 
-            font-weight: 800;
+            overflow:
+                hidden;
 
-            color: white;
+            color:
+                white;
 
-            overflow: hidden;
+            font-weight:
+                800;
 
-            text-overflow: ellipsis;
+            white-space:
+                nowrap;
 
-            white-space: nowrap;
+            text-overflow:
+                ellipsis;
 
         }
 
 
         .player-actions {
 
-            display: flex;
+            display:
+                flex;
 
-            gap: 8px;
+            gap:
+                8px;
 
-            flex-shrink: 0;
+            flex-shrink:
+                0;
 
         }
 
 
         .fullscreen-btn {
 
-            background:
-                #17304a;
-
-            color: white;
-
-            border: none;
+            border:
+                none;
 
             padding:
                 8px 12px;
 
-            border-radius: 6px;
-
-            font-size: 18px;
-
-            cursor: pointer;
-
-        }
-
-
-        .fullscreen-btn:hover {
+            border-radius:
+                6px;
 
             background:
-                #244766;
+                #17304a;
+
+            color:
+                white;
+
+            font-size:
+                18px;
 
         }
 
 
         .close-btn {
 
-            background:
-                var(--accent-pink);
-
-            color: white;
-
-            border: none;
+            border:
+                none;
 
             padding:
                 8px 15px;
 
-            border-radius: 6px;
+            border-radius:
+                6px;
 
-            font-weight: 800;
+            background:
+                var(--pink);
 
-            cursor: pointer;
+            color:
+                white;
+
+            font-weight:
+                800;
 
         }
 
 
         #game-frame {
 
-            width: 100%;
+            width:
+                100%;
 
-            height: 650px;
+            height:
+                650px;
 
-            border: none;
+            display:
+                block;
 
-            display: block;
+            border:
+                none;
 
-            background: #000;
+            background:
+                #000;
 
         }
 
 
-        /* ==============================
+        /* =====================================================
            FOOTER
-        ============================== */
+        ===================================================== */
 
         footer {
 
-            margin-top: 50px;
-
-            padding: 30px;
-
-            text-align: center;
-
-            color:
-                var(--text-muted);
-
             border-top:
-                1px solid var(--card-border);
+                1px solid var(--border);
+
+            background:
+                #050b12;
 
         }
 
 
-        /* ==============================
-           MOBILE
-        ============================== */
+        .footer-inner {
 
-        @media(max-width:700px) {
+            width:
+                min(100% - 32px, var(--max-width));
+
+            margin:
+                auto;
+
+            padding:
+                35px 0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+        }
+
+
+        .footer-brand {
+
+            color:
+                white;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .footer-brand span {
+
+            color:
+                var(--cyan);
+
+        }
+
+
+        .footer-text {
+
+            color:
+                var(--muted);
+
+            font-size:
+                .82rem;
+
+            text-align:
+                right;
+
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media(max-width:1000px) {
 
             .header-inner {
 
-                flex-wrap: wrap;
-
-                padding:
-                    10px 15px;
+                gap:
+                    12px;
 
             }
 
 
             .logo {
 
-                width: 155px;
-
-                height: 48px;
+                width:
+                    180px;
 
             }
 
 
             .logo img {
 
-                width: 155px !important;
-
-                max-width: 155px !important;
-
-                max-height: 48px !important;
-
-            }
-
-
-            .nav-links {
-
-                order: 3;
-
-                width: 100%;
-
-                justify-content: center;
-
-                gap: 5px;
+                width:
+                    180px;
 
             }
 
 
             .search-box {
 
-                flex: 1;
-
-            }
-
-
-            .search-box input {
-
-                width: 100%;
-
-            }
-
-
-            main {
-
-                padding:
-                    20px 12px;
-
-            }
-
-
-            .hero {
-
-                padding:
-                    35px 20px;
-
-            }
-
-
-            .hero h1 {
-
-                font-size:
-                    2.2rem;
+                width:
+                    190px;
 
             }
 
@@ -869,29 +1484,211 @@
             .games-grid {
 
                 grid-template-columns:
-                    repeat(2, 1fr);
-
-                gap: 10px;
+                    repeat(3, minmax(0,1fr));
 
             }
 
 
-            .game-info {
+            .hero-controller {
 
-                padding: 10px;
+                right:
+                    30px;
+
+                opacity:
+                    .45;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media(max-width:700px) {
+
+            header {
+
+                position:
+                    relative;
 
             }
 
 
-            .game-title {
+            .header-inner {
+
+                width:
+                    min(100% - 24px, var(--max-width));
+
+                min-height:
+                    auto;
+
+                padding:
+                    10px 0 12px;
+
+                display:
+                    grid;
+
+                grid-template-columns:
+                    1fr auto;
+
+                gap:
+                    8px 12px;
+
+            }
+
+
+            .logo {
+
+                width:
+                    165px;
+
+                height:
+                    55px;
+
+            }
+
+
+            .logo img {
+
+                width:
+                    165px;
+
+                height:
+                    55px;
+
+            }
+
+
+            nav {
+
+                grid-column:
+                    1 / -1;
+
+                grid-row:
+                    2;
+
+                margin:
+                    0;
+
+            }
+
+
+            .nav-links {
+
+                justify-content:
+                    center;
+
+                gap:
+                    2px;
+
+            }
+
+
+            .nav-links button {
+
+                padding:
+                    8px 9px;
 
                 font-size:
-                    .9rem;
+                    .78rem;
 
             }
 
 
-            .game-category {
+            .search-box {
+
+                width:
+                    100%;
+
+            }
+
+
+            .search-box input {
+
+                height:
+                    42px;
+
+            }
+
+
+            main {
+
+                width:
+                    min(100% - 20px, var(--max-width));
+
+                padding:
+                    18px 0 45px;
+
+            }
+
+
+            .hero {
+
+                min-height:
+                    370px;
+
+                padding:
+                    32px 22px;
+
+                border-radius:
+                    18px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size:
+                    3.4rem;
+
+            }
+
+
+            .hero p {
+
+                font-size:
+                    .92rem;
+
+            }
+
+
+            .hero-controller {
+
+                width:
+                    180px;
+
+                height:
+                    115px;
+
+                right:
+                    -35px;
+
+                top:
+                    72%;
+
+                opacity:
+                    .22;
+
+            }
+
+
+            .hero-button {
+
+                width:
+                    100%;
+
+            }
+
+
+            .ad-container {
+
+                min-height:
+                    80px;
+
+                margin:
+                    22px 0;
 
                 font-size:
                     .72rem;
@@ -899,29 +1696,97 @@
             }
 
 
+            .section-header {
+
+                margin-top:
+                    30px;
+
+            }
+
+
+            .section-title {
+
+                font-size:
+                    1.25rem;
+
+            }
+
+
+            .game-count {
+
+                font-size:
+                    .72rem;
+
+            }
+
+
+            .games-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0,1fr));
+
+                gap:
+                    10px;
+
+            }
+
+
+            .game-info {
+
+                padding:
+                    10px;
+
+            }
+
+
+            .game-title {
+
+                font-size:
+                    .82rem;
+
+            }
+
+
+            .game-category {
+
+                margin-bottom:
+                    9px;
+
+                font-size:
+                    .68rem;
+
+            }
+
+
             .play-button {
 
-                width: 100%;
+                padding:
+                    8px 5px;
+
+                font-size:
+                    .76rem;
 
             }
 
 
             #game-container {
 
-                padding: 0;
+                padding:
+                    0;
 
             }
 
 
             .game-player {
 
-                min-height: 100vh;
+                min-height:
+                    100vh;
 
-                border-radius: 0;
+                border:
+                    none;
 
-                border-left: 0;
-
-                border-right: 0;
+                border-radius:
+                    0;
 
             }
 
@@ -929,15 +1794,102 @@
             #game-frame {
 
                 height:
-                    calc(100vh - 55px);
+                    calc(100vh - 58px);
 
             }
 
 
             .player-header {
 
+                min-height:
+                    58px;
+
                 padding:
                     8px 10px;
+
+            }
+
+
+            .close-btn {
+
+                padding:
+                    8px 11px;
+
+                font-size:
+                    .75rem;
+
+            }
+
+
+            .fullscreen-btn {
+
+                padding:
+                    8px 10px;
+
+            }
+
+
+            .footer-inner {
+
+                padding:
+                    28px 0;
+
+                flex-direction:
+                    column;
+
+                text-align:
+                    center;
+
+            }
+
+
+            .footer-text {
+
+                text-align:
+                    center;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PANTALLAS MUY PEQUEÑAS
+        ===================================================== */
+
+        @media(max-width:380px) {
+
+            .logo {
+
+                width:
+                    145px;
+
+            }
+
+
+            .logo img {
+
+                width:
+                    145px;
+
+            }
+
+
+            .nav-links button {
+
+                padding:
+                    7px 6px;
+
+                font-size:
+                    .72rem;
+
+            }
+
+
+            .hero h1 {
+
+                font-size:
+                    2.8rem;
 
             }
 
@@ -951,9 +1903,9 @@
 <body>
 
 
-    <!-- ==============================
+    <!-- =====================================================
          HEADER
-    ============================== -->
+    ===================================================== -->
 
     <header>
 
@@ -974,10 +1926,22 @@
             </a>
 
 
+            <div class="search-box">
+
+                <input
+                    id="searchInput"
+                    type="search"
+                    placeholder="Buscar juego..."
+                    autocomplete="off"
+                    aria-label="Buscar juego"
+                >
+
+            </div>
+
+
             <nav>
 
                 <ul class="nav-links">
-
 
                     <li>
 
@@ -1020,22 +1984,9 @@
 
                     </li>
 
-
                 </ul>
 
             </nav>
-
-
-            <div class="search-box">
-
-                <input
-                    id="searchInput"
-                    type="search"
-                    placeholder="Buscar juego..."
-                    autocomplete="off"
-                >
-
-            </div>
 
 
         </div>
@@ -1044,36 +1995,72 @@
 
 
 
-    <!-- ==============================
+    <!-- =====================================================
          MAIN
-    ============================== -->
+    ===================================================== -->
 
     <main>
 
 
+        <!-- HERO -->
+
         <section class="hero">
 
 
-            <h1>
-
-                JUEGA
-                <span>GRATIS.</span>
-
-            </h1>
+            <div class="hero-content">
 
 
-            <p>
+                <div class="hero-badge">
 
-                Descubre videojuegos gratuitos y
-                juega directamente desde tu navegador.
-                Sin descargas.
+                    🎮 Juegos gratis online
 
-            </p>
+                </div>
+
+
+                <h1>
+
+                    JUEGA
+                    <span>GRATIS.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Descubre miles de videojuegos
+                    gratuitos y juega directamente
+                    desde tu navegador.
+                    Sin descargas y sin complicaciones.
+
+                </p>
+
+
+                <button
+                    class="hero-button"
+                    type="button"
+                    onclick="irAJuegos()"
+                >
+
+                    🎮 EXPLORAR JUEGOS
+
+                </button>
+
+
+            </div>
+
+
+            <div
+                class="hero-controller"
+                aria-hidden="true"
+            >
+            </div>
 
 
         </section>
 
 
+
+        <!-- PUBLICIDAD -->
 
         <div class="ad-container">
 
@@ -1083,7 +2070,10 @@
 
 
 
+        <!-- TÍTULO -->
+
         <div class="section-header">
+
 
             <h2 class="section-title">
 
@@ -1095,11 +2085,15 @@
             <span
                 id="gameCount"
                 class="game-count"
-            ></span>
+            >
+            </span>
+
 
         </div>
 
 
+
+        <!-- CATÁLOGO -->
 
         <div
             id="gamesGrid"
@@ -1116,6 +2110,8 @@
 
 
 
+        <!-- CARGAR MÁS -->
+
         <div
             id="loadMoreContainer"
             class="load-more-container"
@@ -1127,7 +2123,7 @@
                 type="button"
             >
 
-                CARGAR MÁS JUEGOS
+                ↻ CARGAR MÁS JUEGOS
 
             </button>
 
@@ -1138,9 +2134,9 @@
 
 
 
-    <!-- ==============================
+    <!-- =====================================================
          PLAYER
-    ============================== -->
+    ===================================================== -->
 
     <div
         id="game-container"
@@ -1195,20 +2191,9 @@
 
 
 
-            <!--
-                PLAYGAMA
-
-                Se mantiene la lista de permisos
-                necesaria para los juegos.
-
-                allowfullscreen fue eliminado porque
-                allow="fullscreen" ya controla esta función.
-            -->
-
             <iframe
                 id="game-frame"
                 src="about:blank"
-
                 allow="
                     fullscreen;
                     accelerometer;
@@ -1231,7 +2216,6 @@
                     attribution-reporting;
                     browsing-topics
                 "
-
                 scrolling="no"
                 frameborder="0"
             >
@@ -1244,45 +2228,65 @@
 
 
 
-    <!-- ==============================
+    <!-- =====================================================
          FOOTER
-    ============================== -->
+    ===================================================== -->
 
     <footer>
 
-        🎮 JUEGOSGRATIS
+        <div class="footer-inner">
 
-        <br>
-        <br>
 
-        Juegos gratuitos para jugar
-        desde tu navegador.
+            <div class="footer-brand">
+
+                🎮 JUEGOS<span>GRATIS</span>
+
+            </div>
+
+
+            <div class="footer-text">
+
+                Juegos gratuitos para jugar
+                directamente desde tu navegador.
+                <br>
+                © 2026 JuegosGratis
+
+            </div>
+
+
+        </div>
 
     </footer>
 
 
 
-    <!-- ==============================
-         CARGAR CATÁLOGO
-    ============================== -->
+    <!-- =====================================================
+         CATÁLOGO
+    ===================================================== -->
 
     <script src="juegos2.js"></script>
 
 
 
-    <!-- ==============================
+    <!-- =====================================================
          FUNCIONES DE LA PÁGINA
-    ============================== -->
+    ===================================================== -->
 
     <script>
 
 
         /* =================================================
-           ELEMENTOS
-           ================================================= */
+           CONFIGURACIÓN
+        ================================================= */
 
-        const JUEGOS_POR_PAGINA = 24;
-        
+        const JUEGOS_POR_PAGINA =
+            24;
+
+
+        /* =================================================
+           ELEMENTOS
+        ================================================= */
+
         const gamesGrid =
             document.getElementById(
                 "gamesGrid"
@@ -1332,50 +2336,52 @@
 
 
         /* =================================================
-           ESTADO DE LA PÁGINA
-           ================================================= */
+           ESTADO
+        ================================================= */
 
-        let listaActual = [];
+        let listaActual =
+            [];
 
-        let juegosMostrados = 0;
+        let juegosMostrados =
+            0;
 
 
         /* =================================================
            ESCAPAR HTML
-           ================================================= */
+        ================================================= */
 
         function escaparHTML(texto) {
 
             return String(
                 texto || ""
             )
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
 
         }
 
 
         /* =================================================
            CREAR TARJETA
-           ================================================= */
+        ================================================= */
 
         function crearTarjeta(juego) {
 
@@ -1475,79 +2481,37 @@
 
 
         /* =================================================
-           ACTUALIZAR CONTADOR
-           ================================================= */
-
-        function actualizarContador() {
-
-            if (!listaActual) {
-                return;
-            }
-
-
-            const total =
-                listaActual.length;
-
-
-            const visibles =
-                Math.min(
-                    juegosMostrados,
-                    total
-                );
-
-
-            if (total === 0) {
-
-                gameCount.textContent =
-                    "";
-
-                return;
-
-            }
-
-
-            gameCount.textContent =
-                `${visibles} de ${total} juegos`;
-
-        }
-
-
-        /* =================================================
            MOSTRAR JUEGOS
-           ================================================= */
+        ================================================= */
 
         function mostrarJuegos(
             lista,
             reiniciar = true
         ) {
 
-            if (!Array.isArray(lista)) {
+
+            if (
+                !Array.isArray(lista)
+            ) {
 
                 lista = [];
 
             }
 
 
-            /*
-                Si estamos cambiando de sección
-                o realizando una nueva búsqueda,
-                limpiamos el catálogo.
-            */
-
             if (reiniciar) {
 
-                gamesGrid.innerHTML = "";
+                gamesGrid.innerHTML =
+                    "";
 
-                juegosMostrados = 0;
+                juegosMostrados =
+                    0;
 
-                listaActual = lista;
+                listaActual =
+                    lista;
 
             }
 
-
-            /*
-                Sin resultados.
-            */
 
             if (
                 listaActual.length === 0
@@ -1568,16 +2532,14 @@
                     "none";
 
 
-                actualizarContador();
+                gameCount.textContent =
+                    "";
+
 
                 return;
 
             }
 
-
-            /*
-                Determinar el siguiente grupo.
-            */
 
             const inicio =
                 juegosMostrados;
@@ -1590,11 +2552,6 @@
                     listaActual.length
                 );
 
-
-            /*
-                Fragment evita múltiples
-                actualizaciones del DOM.
-            */
 
             const fragment =
                 document.createDocumentFragment();
@@ -1627,11 +2584,6 @@
             actualizarContador();
 
 
-            /*
-                Mostrar u ocultar
-                "Cargar más".
-            */
-
             if (
                 juegosMostrados <
                 listaActual.length
@@ -1640,10 +2592,8 @@
                 loadMoreContainer.style.display =
                     "flex";
 
-                loadMoreBtn.disabled =
-                    false;
-
-            } else {
+            }
+            else {
 
                 loadMoreContainer.style.display =
                     "none";
@@ -1654,8 +2604,41 @@
 
 
         /* =================================================
+           CONTADOR
+        ================================================= */
+
+        function actualizarContador() {
+
+            const total =
+                listaActual.length;
+
+
+            const visibles =
+                Math.min(
+                    juegosMostrados,
+                    total
+                );
+
+
+            if (!total) {
+
+                gameCount.textContent =
+                    "";
+
+                return;
+
+            }
+
+
+            gameCount.textContent =
+                `${visibles} de ${total} juegos`;
+
+        }
+
+
+        /* =================================================
            CARGAR MÁS
-           ================================================= */
+        ================================================= */
 
         function cargarMasJuegos() {
 
@@ -1674,13 +2657,42 @@
 
 
         /* =================================================
+           EXPLORAR JUEGOS
+        ================================================= */
+
+        function irAJuegos() {
+
+            const destino =
+                document.querySelector(
+                    ".section-header"
+                );
+
+
+            if (!destino) {
+                return;
+            }
+
+
+            destino.scrollIntoView({
+                behavior:
+                    "smooth",
+                block:
+                    "start"
+            });
+
+        }
+
+
+        /* =================================================
            ABRIR JUEGO
-           ================================================= */
+        ================================================= */
 
         function abrirJuego(id) {
 
             const juego =
-                obtenerJuegoPorId(id);
+                obtenerJuegoPorId(
+                    id
+                );
 
 
             if (!juego) {
@@ -1705,11 +2717,6 @@
                 juego.nombre;
 
 
-            /*
-                Cargar el juego solamente
-                cuando el usuario lo abre.
-            */
-
             gameFrame.src =
                 juego.url;
 
@@ -1732,15 +2739,9 @@
 
         /* =================================================
            CERRAR JUEGO
-           ================================================= */
+        ================================================= */
 
         function cerrarJuego() {
-
-            /*
-                Liberamos el iframe al cerrar.
-                Esto evita que el juego continúe
-                consumiendo recursos en segundo plano.
-            */
 
             gameFrame.src =
                 "about:blank";
@@ -1764,7 +2765,7 @@
 
         /* =================================================
            PANTALLA COMPLETA
-           ================================================= */
+        ================================================= */
 
         function pantallaCompletaJuego() {
 
@@ -1783,7 +2784,13 @@
                 document.fullscreenElement
             ) {
 
-                document.exitFullscreen();
+                if (
+                    document.exitFullscreen
+                ) {
+
+                    document.exitFullscreen();
+
+                }
 
                 return;
 
@@ -1803,7 +2810,7 @@
 
         /* =================================================
            INICIO
-           ================================================= */
+        ================================================= */
 
         function mostrarTodos() {
 
@@ -1814,8 +2821,10 @@
 
 
             window.scrollTo({
-                top: 0,
-                behavior: "smooth"
+                top:
+                    0,
+                behavior:
+                    "smooth"
             });
 
         }
@@ -1823,7 +2832,7 @@
 
         /* =================================================
            POPULARES
-           ================================================= */
+        ================================================= */
 
         function mostrarPopulares() {
 
@@ -1834,8 +2843,10 @@
 
 
             window.scrollTo({
-                top: 0,
-                behavior: "smooth"
+                top:
+                    0,
+                behavior:
+                    "smooth"
             });
 
         }
@@ -1843,7 +2854,7 @@
 
         /* =================================================
            NUEVOS
-           ================================================= */
+        ================================================= */
 
         function mostrarNuevos() {
 
@@ -1854,8 +2865,10 @@
 
 
             window.scrollTo({
-                top: 0,
-                behavior: "smooth"
+                top:
+                    0,
+                behavior:
+                    "smooth"
             });
 
         }
@@ -1863,12 +2876,15 @@
 
         /* =================================================
            BUSCADOR
-           ================================================= */
+        ================================================= */
 
-        let temporizadorBusqueda = null;
+        let temporizadorBusqueda =
+            null;
 
 
-        function buscarEnCatalogo(texto) {
+        function buscarEnCatalogo(
+            texto
+        ) {
 
             clearTimeout(
                 temporizadorBusqueda
@@ -1891,7 +2907,7 @@
                         );
 
                     },
-                    120
+                    150
                 );
 
         }
@@ -1910,8 +2926,8 @@
 
 
         /* =================================================
-           ESCAPE PARA CERRAR EL JUEGO
-           ================================================= */
+           ESCAPE
+        ================================================= */
 
         document.addEventListener(
             "keydown",
@@ -1932,7 +2948,7 @@
 
         /* =================================================
            CATÁLOGO LISTO
-           ================================================= */
+        ================================================= */
 
         document.addEventListener(
             "catalogoCargado",
@@ -1950,8 +2966,8 @@
 
 
         /* =================================================
-           ERROR DE CATÁLOGO
-           ================================================= */
+           ERROR
+        ================================================= */
 
         document.addEventListener(
             "catalogoError",
@@ -1976,10 +2992,6 @@
         );
 
     </script>
-
-</body>
-
-</html>
 
 </body>
 
