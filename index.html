@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiPortalGame - Juegos Gratis Online</title>
+  <style>
+    /* VARIABLES Y ESTILOS GLOBALES */
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ENCABEZADO Y NAVEGACIÓN */
+    header {
+      background-color: var(--bg-card);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .search-bar input {
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      border: 1px solid #334155;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      outline: none;
+      width: 250px;
+    }
+
+    /* ÁREA DEL REPRODUCTOR DE JUEGO (OCULTA POR DEFECTO) */
+    #game-container {
+      display: none;
+      width: 100%;
+      max-width: 1000px;
+      margin: 2rem auto 0;
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    #game-frame {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+
+    .game-controls {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111827;
+    }
+
+    .close-btn {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* GRILLA DE JUEGOS */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    .section-title {
+      margin-bottom: 1.5rem;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    .grid-games {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* TARJETAS DE JUEGO */
+    .card {
+      background-color: var(--bg-card);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid #334155;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+      border-color: var(--accent);
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .card-info {
+      padding: 0.8rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* PIE DE PÁGINA */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--bg-card);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid #334155;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">🎮 MiPortalGame</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar juego...">
+    </div>
+  </header>
+
+  <!-- PANTALLA PRINCIPAL DEL JUEGO SELECCIONADO -->
+  <div id="game-container">
+    <iframe id="game-frame" src="" allowfullscreen></iframe>
+    <div class="game-controls">
+      <h2 id="active-game-title">Cargando...</h2>
+      <button class="close-btn" onclick="cerrarJuego()">✖ Cerrar Juego</button>
+    </div>
+  </div>
+
+  <!-- GRILLA PRINCIPAL DE JUEGOS -->
+  <main>
+    <h2 class="section-title">Juegos Destacados</h2>
+    
+    <div class="grid-games">
+      
+      <!-- JUEGO 1 -->
+      <div class="card" onclick="cargarJuego('https://html5.gamedistribution.com/rvvAS300/a26b2b6473ba418bb208471c66f7f329/', 'Moto X3M')">
+        <img src="https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg" alt="Moto X3M">
+        <div class="card-info">
+          <div class="card-title">Moto X3M</div>
+          <div class="card-tag">Carreras</div>
+        </div>
+      </div>
+
+      <!-- JUEGO 2 -->
+      <div class="card" onclick="cargarJuego('https://html5.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a/', 'Subway Surfers')">
+        <img src="https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg" alt="Juego Arcade">
+        <div class="card-info">
+          <div class="card-title">Runner Arcade</div>
+          <div class="card-tag">Acción</div>
+        </div>
+      </div>
+
+      <!-- Puedes duplicar las tarjetas (.card) de arriba para agregar más juegos -->
+
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>&copy; 2026 MiPortalGame - Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- LÓGICA JAVASCRIPT -->
+  <script>
+    function cargarJuego(url, titulo) {
+      const container = document.getElementById('game-container');
+      const frame = document.getElementById('game-frame');
+      const titleElem = document.getElementById('active-game-title');
+
+      frame.src = url;
+      titleElem.innerText = titulo;
+      container.style.display = 'block';
+
+      // Desplazarse suavemente hacia el reproductor
+      container.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function cerrarJuego() {
+      const container = document.getElementById('game-container');
+      const frame = document.getElementById('game-frame');
+
+      frame.src = '';
+      container.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
