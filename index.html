@@ -2,382 +2,1430 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>juegosgratis.site - Juegos Gratis Online</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>JuegosGratis.site | Juegos gratis online</title>
+
+  <meta
+    name="description"
+    content="Juega videojuegos gratis directamente desde tu navegador en JuegosGratis.site."
+  >
+
   <style>
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
+
     :root {
-      --bg-dark: #07101a;
-      --bg-card: #0b1c31;
-      --bg-header: #07101a;
+      --bg-dark: #070f1a;
+      --bg-header: #0b1625;
+      --bg-card: #101d2e;
+      --bg-card-hover: #15263c;
+
+      --text-main: #f8fafc;
+      --text-muted: #8fa3b8;
+
+      --card-border: #24364d;
+
       --accent-cyan: #00f2fe;
       --accent-purple: #7928ca;
-      --action-orange: #ff6b00;
-      --text-main: #ffffff;
-      --text-muted: #8899aa;
-      --card-border: #1a2e48;
+
+      --danger: #ff3355;
+
+      --max-width: 1200px;
     }
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       background-color: var(--bg-dark);
       color: var(--text-main);
+
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+      min-height: 100vh;
+
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
     }
 
-    /* ENCABEZADO */
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
     header {
       background-color: var(--bg-header);
+
       padding: 0.8rem 2rem;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      gap: 1.5rem;
+
       border-bottom: 1px solid var(--card-border);
+
       position: sticky;
       top: 0;
+
       z-index: 100;
+
+      backdrop-filter: blur(12px);
     }
+
+
+    /* LOGO */
 
     .logo-container {
       display: flex;
       align-items: center;
+      flex-shrink: 0;
     }
 
-    /* TAMAÑO AUMENTADO DEL LOGO */
     .site-logo {
-      height: 75px; /* Aumentado de 45px a 75px */
+      height: 45px;
       width: auto;
       object-fit: contain;
     }
 
+    .text-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      font-size: 1.35rem;
+      font-weight: 900;
+
+      color: white;
+
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-cyan)
+        );
+
+      font-size: 20px;
+    }
+
+    .logo-domain {
+      color: var(--accent-cyan);
+    }
+
+
+    /* NAVEGACIÓN */
+
     .nav-links {
       display: flex;
+
       gap: 20px;
+
       list-style: none;
     }
 
     .nav-links a {
       color: var(--text-muted);
+
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
+
+      font-size: 0.85rem;
+      font-weight: 700;
+
       transition: color 0.2s;
     }
 
-    .nav-links a:hover, .nav-links a.active {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--accent-cyan);
     }
 
-    .search-bar input {
-      padding: 0.6rem 1.2rem;
-      border-radius: 20px;
-      border: 1px solid var(--card-border);
-      background-color: #0d1f35;
-      color: var(--text-main);
-      outline: none;
+
+    /* BUSCADOR */
+
+    .search-bar {
       width: 220px;
+    }
+
+    .search-bar input {
+      width: 100%;
+
+      padding: 0.6rem 1.2rem;
+
+      border-radius: 20px;
+
+      border: 1px solid var(--card-border);
+
+      background-color: #0d1f35;
+
+      color: var(--text-main);
+
+      outline: none;
+
       font-size: 0.85rem;
+
+      transition: 0.2s;
+    }
+
+    .search-bar input::placeholder {
+      color: #64748b;
     }
 
     .search-bar input:focus {
       border-color: var(--accent-cyan);
+
+      box-shadow:
+        0 0 0 3px rgba(0, 242, 254, 0.08);
     }
 
-    /* REPRODUCTOR DE JUEGO */
-    #game-container {
-      display: none;
-      width: 100%;
-      max-width: 1000px;
-      margin: 1.5rem auto 0;
-      background: var(--bg-card);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--accent-cyan);
-      box-shadow: 0 0 25px rgba(0, 242, 254, 0.2);
-    }
 
-    #game-frame {
-      width: 100%;
-      height: 600px;
-      border: none;
-    }
+    /* =====================================================
+       CONTENIDO PRINCIPAL
+    ===================================================== */
 
-    .game-controls {
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #050b12;
-    }
-
-    .close-btn {
-      background: #ff3355;
-      color: white;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    /* CONTENIDO PRINCIPAL */
     main {
       flex: 1;
-      max-width: 1200px;
+
+      max-width: var(--max-width);
+
       margin: 0 auto;
+
       padding: 2rem 1rem;
+
       width: 100%;
     }
 
-    .section-title {
-      font-size: 1.3rem;
-      font-weight: 700;
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+      position: relative;
+
+      min-height: 250px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 3rem;
+
+      margin-bottom: 2rem;
+
+      overflow: hidden;
+
+      border-radius: 18px;
+
+      border: 1px solid var(--card-border);
+
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(0, 242, 254, 0.16),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 15% 90%,
+          rgba(121, 40, 202, 0.25),
+          transparent 40%
+        ),
+
+        linear-gradient(
+          135deg,
+          #0e1b2d,
+          #08111e
+        );
+    }
+
+    .hero-content {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 700px;
+    }
+
+    .hero-label {
+      color: var(--accent-cyan);
+
+      font-size: 0.75rem;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+
+      line-height: 1.05;
+
       margin-bottom: 1rem;
+
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+
+      max-width: 600px;
+
+      line-height: 1.6;
+
+      font-size: 1rem;
+    }
+
+    .hero-controller {
+      position: absolute;
+
+      right: 7%;
+
+      font-size: 8rem;
+
+      opacity: 0.12;
+
+      transform: rotate(-10deg);
+    }
+
+
+    /* =====================================================
+       PUBLICIDAD
+    ===================================================== */
+
+    .ad-container {
+      min-height: 90px;
+
+      margin: 1.5rem 0 2.5rem;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border: 1px dashed #34465d;
+
+      border-radius: 10px;
+
+      background-color: #09131f;
+
+      color: #60758c;
+
+      font-size: 0.7rem;
+
+      letter-spacing: 2px;
+    }
+
+
+    /* =====================================================
+       TÍTULOS
+    ===================================================== */
+
+    .section-title {
+      font-size: 1.4rem;
+
+      font-weight: 800;
+
+      margin-bottom: 1rem;
+
       color: var(--text-main);
     }
 
-    /* CARROUSEL / DESTACADOS */
+
+    /* =====================================================
+       DESTACADOS
+    ===================================================== */
+
     .featured-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(280px, 1fr)
+        );
+
       gap: 1.5rem;
+
       margin-bottom: 2.5rem;
     }
 
     .featured-card {
       position: relative;
+
       border-radius: 12px;
+
       overflow: hidden;
-      height: 160px;
+
+      height: 180px;
+
       cursor: pointer;
+
       border: 2px solid transparent;
+
       transition: all 0.3s ease;
+
+      background: #0b1625;
     }
 
     .featured-card:hover {
       border-color: var(--accent-cyan);
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+
+      box-shadow:
+        0 0 20px
+        rgba(0, 242, 254, 0.35);
+
       transform: translateY(-3px);
     }
 
     .featured-card img {
       width: 100%;
+
       height: 100%;
+
       object-fit: cover;
+
+      display: block;
     }
 
     .featured-overlay {
       position: absolute;
+
       bottom: 0;
+
       left: 0;
+
       right: 0;
+
       padding: 1rem;
-      background: linear-gradient(to top, rgba(7, 16, 26, 0.95), transparent);
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(7, 16, 26, 0.98),
+          transparent
+        );
     }
 
     .featured-title {
       font-size: 1.1rem;
+
       font-weight: 800;
     }
 
-    /* GRILLA PRINCIPAL */
+
+    /* =====================================================
+       GRILLA DE JUEGOS
+    ===================================================== */
+
     .grid-games {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+
+      grid-template-columns:
+        repeat(
+          auto-fill,
+          minmax(170px, 1fr)
+        );
+
       gap: 1.2rem;
     }
 
+
+    /* =====================================================
+       TARJETAS
+    ===================================================== */
+
     .card {
       background-color: var(--bg-card);
+
       border-radius: 12px;
+
       overflow: hidden;
+
       cursor: pointer;
+
       border: 1px solid var(--card-border);
-      transition: all 0.2s ease;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
       display: flex;
+
       flex-direction: column;
     }
 
     .card:hover {
       transform: translateY(-5px);
+
       border-color: var(--accent-purple);
-      box-shadow: 0 5px 15px rgba(121, 40, 202, 0.3);
+
+      box-shadow:
+        0 5px 20px
+        rgba(121, 40, 202, 0.3);
     }
 
     .card img {
       width: 100%;
-      height: 120px;
+
+      height: 130px;
+
       object-fit: cover;
+
+      display: block;
     }
 
     .card-info {
       padding: 0.8rem;
+
       display: flex;
+
       flex-direction: column;
+
       gap: 4px;
+
       flex: 1;
     }
 
     .card-title {
       font-size: 0.9rem;
+
       font-weight: 700;
+
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
     }
 
     .card-tag {
       font-size: 0.75rem;
+
       color: var(--text-muted);
     }
 
     .card-bottom {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
-      margin-top: 8px;
+
+      margin-top: auto;
+
+      padding-top: 8px;
     }
 
     .rating {
       font-size: 0.75rem;
+
       color: #ffcc00;
+
       font-weight: bold;
     }
 
     .btn-play {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+
       color: #fff;
+
       border: none;
-      padding: 0.3rem 0.7rem;
+
+      padding: 0.35rem 0.75rem;
+
       border-radius: 6px;
+
       font-size: 0.75rem;
+
       font-weight: 700;
     }
 
-    /* PIE DE PÁGINA */
+    .btn-play:hover {
+      filter: brightness(1.15);
+    }
+
+
+    /* =====================================================
+       REPRODUCTOR
+    ===================================================== */
+
+    #game-container {
+      display: none;
+
+      width: 100%;
+
+      max-width: 1000px;
+
+      margin: 2rem auto;
+
+      background: var(--bg-card);
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--accent-cyan);
+
+      box-shadow:
+        0 0 25px
+        rgba(0, 242, 254, 0.2);
+    }
+
+    .game-header {
+      padding: 0.8rem 1rem;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 1rem;
+
+      background: #050b12;
+
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .game-title {
+      font-weight: 800;
+    }
+
+    .game-label {
+      display: block;
+
+      color: var(--accent-cyan);
+
+      font-size: 0.65rem;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 3px;
+    }
+
+    #game-frame {
+      width: 100%;
+
+      height: 600px;
+
+      border: none;
+
+      display: block;
+
+      background: #000;
+    }
+
+    .close-btn {
+      background: var(--danger);
+
+      color: white;
+
+      border: none;
+
+      padding: 0.5rem 1.2rem;
+
+      border-radius: 6px;
+
+      cursor: pointer;
+
+      font-weight: bold;
+    }
+
+    .close-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .game-message {
+      padding: 0.7rem 1rem;
+
+      color: var(--text-muted);
+
+      font-size: 0.75rem;
+
+      background: #050b12;
+    }
+
+
+    /* =====================================================
+       SIN RESULTADOS
+    ===================================================== */
+
+    #no-results {
+      display: none;
+
+      text-align: center;
+
+      padding: 4rem 1rem;
+
+      color: var(--text-muted);
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
     footer {
       text-align: center;
+
       padding: 1.5rem;
+
       background-color: var(--bg-card);
+
       color: var(--text-muted);
+
       font-size: 0.85rem;
+
       border-top: 1px solid var(--card-border);
+
       margin-top: 3rem;
     }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 900px) {
+
+      header {
+        flex-wrap: wrap;
+
+        justify-content: center;
+      }
+
+      .logo-container {
+        width: 100%;
+
+        justify-content: center;
+      }
+
+      .nav-links {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+      }
+
+      .search-bar {
+        width: min(300px, 100%);
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      main {
+        padding: 1rem;
+      }
+
+      header {
+        padding: 0.8rem 1rem;
+      }
+
+      .hero {
+        padding: 2rem 1.5rem;
+
+        min-height: 300px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-controller {
+        font-size: 5rem;
+
+        right: 5%;
+
+        bottom: 10%;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-games {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 0.8rem;
+      }
+
+      .card img {
+        height: 110px;
+      }
+
+      .card-info {
+        padding: 0.65rem;
+      }
+
+      #game-frame {
+        height: 500px;
+      }
+
+    }
+
+
+    @media (max-width: 380px) {
+
+      .grid-games {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
   </style>
 </head>
+
+
 <body>
 
-  <!-- ENCABEZADO -->
+  <!-- =====================================================
+       ENCABEZADO
+  ====================================================== -->
+
   <header>
+
     <div class="logo-container">
-      <img src="logo.png" alt="Juegos Gratis Site" class="site-logo">
+
+      <!-- Por ahora usamos logo de texto.
+           Después podemos poner tu logo definitivo aquí. -->
+
+      <a href="#" class="text-logo">
+
+        <span class="logo-icon">
+          🎮
+        </span>
+
+        <span>
+          JuegosGratis<span class="logo-domain">.site</span>
+        </span>
+
+      </a>
+
     </div>
-    
-    <ul class="nav-links">
-      <li><a href="#" class="active">INICIO</a></li>
-      <li><a href="#">CATEGORÍAS</a></li>
-      <li><a href="#">POPULARES</a></li>
-      <li><a href="#">NUEVOS</a></li>
-    </ul>
+
+
+    <!-- NAVEGACIÓN -->
+
+    <nav>
+
+      <ul class="nav-links">
+
+        <li>
+          <a href="#" class="active">
+            INICIO
+          </a>
+        </li>
+
+        <li>
+          <a href="#categorias">
+            CATEGORÍAS
+          </a>
+        </li>
+
+        <li>
+          <a href="#populares">
+            POPULARES
+          </a>
+        </li>
+
+        <li>
+          <a href="#nuevos">
+            NUEVOS
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+
+    <!-- BUSCADOR -->
 
     <div class="search-bar">
-      <input type="text" placeholder="Buscar juego...">
+
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="🔎 Buscar juego..."
+        autocomplete="off"
+      >
+
     </div>
+
   </header>
 
-  <!-- REPRODUCTOR DE JUEGO -->
-  <div id="game-container">
-    <iframe id="game-frame" src="" allowfullscreen></iframe>
-    <div class="game-controls">
-      <h2 id="active-game-title">Cargando...</h2>
-      <button class="close-btn" onclick="cerrarJuego()">✖ Cerrar Juego</button>
-    </div>
-  </div>
 
-  <!-- CONTENIDO -->
+  <!-- =====================================================
+       CONTENIDO
+  ====================================================== -->
+
   <main>
-    <h2 class="section-title">Destacados</h2>
-    <div class="featured-grid">
-      
-      <div class="featured-card" onclick="cargarJuego('https://html5.gamedistribution.com/rvvAS300/a26b2b6473ba418bb208471c66f7f329/', 'Moto X3M')">
-        <img src="https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg" alt="Moto X3M">
-        <div class="featured-overlay">
-          <div class="featured-title">Moto X3M</div>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="hero-label">
+          🎮 JUEGA GRATIS
         </div>
+
+        <h1>
+          Videojuegos gratis,
+          directamente en tu navegador.
+        </h1>
+
+        <p>
+          Descubre juegos de acción, carreras,
+          arcade y mucho más. Sin instalaciones.
+        </p>
+
       </div>
 
-      <div class="featured-card" onclick="cargarJuego('https://html5.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a/', 'Subway Surfers')">
-        <img src="https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg" alt="Runner Arcade">
-        <div class="featured-overlay">
-          <div class="featured-title">Runner Arcade</div>
-        </div>
+      <div class="hero-controller">
+        🎮
       </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ESPACIO PUBLICITARIO
+    ================================================== -->
+
+    <div class="ad-container">
+
+      ESPACIO PUBLICITARIO
 
     </div>
 
-    <h2 class="section-title">Todos los Juegos</h2>
-    <div class="grid-games">
-      
-      <!-- TARJETA 1 -->
-      <div class="card" onclick="cargarJuego('https://html5.gamedistribution.com/rvvAS300/a26b2b6473ba418bb208471c66f7f329/', 'Moto X3M')">
-        <img src="https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg" alt="Moto X3M">
-        <div class="card-info">
-          <div class="card-title">Moto X3M</div>
-          <div class="card-tag">Carreras</div>
-          <div class="card-bottom">
-            <span class="rating">★ 4.8</span>
-            <button class="btn-play">Jugar</button>
+
+    <!-- =================================================
+         DESTACADOS
+    ================================================== -->
+
+    <section id="populares">
+
+      <h2 class="section-title">
+        🔥 Juegos destacados
+      </h2>
+
+
+      <div class="featured-grid">
+
+
+        <!-- DESTACADO 1 -->
+
+        <div
+          class="featured-card"
+          onclick="cargarJuego(
+            'https://html5.gamedistribution.com/rvvAS300/a26b2b6473ba418bb208471c66f7f329/',
+            'Moto X3M'
+          )"
+        >
+
+          <img
+            src="https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg"
+            alt="Moto X3M"
+          >
+
+          <div class="featured-overlay">
+
+            <div class="featured-title">
+              🏍️ Moto X3M
+            </div>
+
           </div>
+
         </div>
+
+
+        <!-- DESTACADO 2 -->
+
+        <div
+          class="featured-card"
+          onclick="cargarJuego(
+            'https://html5.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a/',
+            'Runner Arcade'
+          )"
+        >
+
+          <img
+            src="https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg"
+            alt="Runner Arcade"
+          >
+
+          <div class="featured-overlay">
+
+            <div class="featured-title">
+              🏃 Runner Arcade
+            </div>
+
+          </div>
+
+        </div>
+
+
       </div>
 
-      <!-- TARJETA 2 -->
-      <div class="card" onclick="cargarJuego('https://html5.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a/', 'Runner Arcade')">
-        <img src="https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg" alt="Runner Arcade">
-        <div class="card-info">
-          <div class="card-title">Runner Arcade</div>
-          <div class="card-tag">Acción</div>
-          <div class="card-bottom">
-            <span class="rating">★ 4.6</span>
-            <button class="btn-play">Jugar</button>
+    </section>
+
+
+    <!-- =================================================
+         TODOS LOS JUEGOS
+    ================================================== -->
+
+    <section id="nuevos">
+
+      <h2 class="section-title">
+        🎮 Todos los juegos
+      </h2>
+
+
+      <div
+        class="grid-games"
+        id="gamesGrid"
+      >
+
+
+        <!-- =============================================
+             JUEGO 1
+        ============================================== -->
+
+        <div
+          class="card game-item"
+          data-name="moto x3m"
+          data-category="carreras"
+          onclick="cargarJuego(
+            'https://html5.gamedistribution.com/rvvAS300/a26b2b6473ba418bb208471c66f7f329/',
+            'Moto X3M'
+          )"
+        >
+
+          <img
+            src="https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg"
+            alt="Moto X3M"
+            loading="lazy"
+          >
+
+          <div class="card-info">
+
+            <div class="card-title">
+              Moto X3M
+            </div>
+
+            <div class="card-tag">
+              🏁 Carreras
+            </div>
+
+            <div class="card-bottom">
+
+              <span class="rating">
+                ★ 4.8
+              </span>
+
+              <button
+                class="btn-play"
+                type="button"
+              >
+                Jugar
+              </button>
+
+            </div>
+
           </div>
+
         </div>
+
+
+        <!-- =============================================
+             JUEGO 2
+        ============================================== -->
+
+        <div
+          class="card game-item"
+          data-name="runner arcade"
+          data-category="accion"
+          onclick="cargarJuego(
+            'https://html5.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a/',
+            'Runner Arcade'
+          )"
+        >
+
+          <img
+            src="https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg"
+            alt="Runner Arcade"
+            loading="lazy"
+          >
+
+          <div class="card-info">
+
+            <div class="card-title">
+              Runner Arcade
+            </div>
+
+            <div class="card-tag">
+              ⚡ Acción
+            </div>
+
+            <div class="card-bottom">
+
+              <span class="rating">
+                ★ 4.6
+              </span>
+
+              <button
+                class="btn-play"
+                type="button"
+              >
+                Jugar
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
       </div>
+
+
+      <!-- MENSAJE DE BÚSQUEDA -->
+
+      <div id="no-results">
+
+        <h3>
+          🔎 No encontramos ese juego
+        </h3>
+
+        <p>
+          Prueba con otro nombre.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         REPRODUCTOR
+    ================================================== -->
+
+    <section id="game-container">
+
+      <div class="game-header">
+
+        <div>
+
+          <span class="game-label">
+            AHORA JUGANDO
+          </span>
+
+          <div
+            id="current-game-title"
+            class="game-title"
+          >
+            Juego
+          </div>
+
+        </div>
+
+
+        <button
+          class="close-btn"
+          onclick="cerrarJuego()"
+          type="button"
+        >
+          ✕ Cerrar
+        </button>
+
+      </div>
+
+
+      <iframe
+        id="game-frame"
+        src=""
+        title="Videojuego"
+        allowfullscreen
+      ></iframe>
+
+
+      <div class="game-message">
+
+        Si el juego no carga, puede que el proveedor
+        no permita reproducirlo dentro de otros sitios.
+
+      </div>
+
+    </section>
+
+
+    <!-- PUBLICIDAD INFERIOR -->
+
+    <div class="ad-container">
+
+      ESPACIO PUBLICITARIO
 
     </div>
+
+
   </main>
 
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
   <footer>
-    <p>&copy; 2026 juegosgratis.site - Todos los derechos reservados.</p>
+
+    <strong>
+      🎮 JuegosGratis.site
+    </strong>
+
+    <br>
+
+    <span>
+      Juegos gratuitos online · © 2026
+    </span>
+
   </footer>
 
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
   <script>
-    function cargarJuego(url, titulo) {
-      const container = document.getElementById('game-container');
-      const frame = document.getElementById('game-frame');
-      const titleElem = document.getElementById('active-game-title');
+
+    /*
+     * =====================================================
+     * CARGAR JUEGO
+     * =====================================================
+     */
+
+    function cargarJuego(url, nombre) {
+
+      const container =
+        document.getElementById("game-container");
+
+      const frame =
+        document.getElementById("game-frame");
+
+      const title =
+        document.getElementById("current-game-title");
+
+
+      /*
+       * Cambiamos el título
+       */
+
+      title.textContent = nombre;
+
+
+      /*
+       * Cargamos el juego
+       */
 
       frame.src = url;
-      titleElem.innerText = titulo;
-      container.style.display = 'block';
-      container.scrollIntoView({ behavior: 'smooth' });
+
+
+      /*
+       * Mostramos el reproductor
+       */
+
+      container.style.display = "block";
+
+
+      /*
+       * Bajamos hasta el reproductor
+       */
+
+      setTimeout(function () {
+
+        container.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }, 100);
+
     }
+
+
+    /*
+     * =====================================================
+     * CERRAR JUEGO
+     * =====================================================
+     */
 
     function cerrarJuego() {
-      const container = document.getElementById('game-container');
-      const frame = document.getElementById('game-frame');
 
-      frame.src = '';
-      container.style.display = 'none';
+      const container =
+        document.getElementById("game-container");
+
+      const frame =
+        document.getElementById("game-frame");
+
+
+      /*
+       * Detenemos el juego
+       */
+
+      frame.src = "";
+
+
+      /*
+       * Ocultamos el reproductor
+       */
+
+      container.style.display = "none";
+
     }
+
+
+    /*
+     * =====================================================
+     * BUSCADOR
+     * =====================================================
+     */
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const gameItems =
+      document.querySelectorAll(".game-item");
+
+    const noResults =
+      document.getElementById("no-results");
+
+
+    searchInput.addEventListener(
+      "input",
+      function () {
+
+        const search =
+          searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+        let visibleGames = 0;
+
+
+        gameItems.forEach(function (game) {
+
+          const name =
+            game.dataset.name || "";
+
+          const category =
+            game.dataset.category || "";
+
+
+          const matches =
+            name.includes(search) ||
+            category.includes(search);
+
+
+          if (matches) {
+
+            game.style.display = "flex";
+
+            visibleGames++;
+
+          } else {
+
+            game.style.display = "none";
+
+          }
+
+        });
+
+
+        /*
+         * Mostrar mensaje si no encontramos juegos
+         */
+
+        if (visibleGames === 0) {
+
+          noResults.style.display = "block";
+
+        } else {
+
+          noResults.style.display = "none";
+
+        }
+
+      }
+    );
+
+
   </script>
+
 </body>
 </html>
