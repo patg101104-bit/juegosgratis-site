@@ -451,8 +451,7 @@ function obtenerCategorias() {
 }
 
 
-console.log(
-    "🎮 JuegosGratis - catálogo iniciado"
+console.log("PRUEBA JUEGOS.JS 12345");
 );
 
 
