@@ -787,28 +787,37 @@
         <div class="game-player">
 
 
-            <div class="player-header">
+           <div class="player-header">
 
+```
+<div id="game-title">
+    Juego
+</div>
 
-                <div id="game-title">
+<div class="player-actions">
 
-                    Juego
+    <button
+        class="fullscreen-btn"
+        type="button"
+        onclick="pantallaCompletaJuego()"
+        title="Pantalla completa"
+    >
+        ⛶
+    </button>
 
-                </div>
+    <button
+        class="close-btn"
+        type="button"
+        onclick="cerrarJuego()"
+    >
+        ✕ CERRAR
+    </button>
 
+</div>
+```
 
-                <button
-                    class="close-btn"
-                    type="button"
-                    onclick="cerrarJuego()"
-                >
+</div>
 
-                    ✕ CERRAR
-
-                </button>
-
-
-            </div>
 
 
 
