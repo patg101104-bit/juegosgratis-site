@@ -96,21 +96,24 @@
     }
 
 
-    ..logo {
+   .logo {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 45px;
     text-decoration: none;
-    line-height: 0;
+    overflow: hidden;
 }
 
 .logo img {
     display: block;
-    width: 180px;
-    height: auto;
-    max-height: 55px;
+    width: 150px !important;
+    height: 45px !important;
+    max-width: 150px !important;
+    max-height: 45px !important;
     object-fit: contain;
 }
-
 
     .logo span {
         color: var(--accent-cyan);
