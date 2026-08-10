@@ -1,12 +1,12 @@
 /*
-=========================================================
- JUEGOSGRATIS
- Catálogo de videojuegos
- GameDistribution
-=========================================================
-*/
+ * JuegosGratis - Catálogo de juegos
+ */
 
 const juegos = [
+
+    // ==========================================
+    // JUEGOS EXISTENTES
+    // ==========================================
 
     {
         id: "moto-x3m",
@@ -77,17 +77,63 @@ const juegos = [
         destacado: true,
 
         nuevo: false
+    },
+
+
+    // ==========================================
+    // PLAYGAMA
+    // ==========================================
+
+    {
+        id: "rivals-fps-online-shooter",
+
+        nombre: "RIVALS FPS: Online Shooter",
+
+        categoria: "accion",
+
+        rating: 4.8,
+
+        imagen:
+            "https://static.playgama.com/p-img/pg/rivals-fps-online-shooter/big_preview/f09adf25db724a509d28d6427dfd4d7c?width=448",
+
+        url:
+            "https://playgama.com/export/game/rivals-fps-online-shooter?clid=p_a44683ad-e4e8-4bad-8189-0fd8ef68cae2",
+
+        paginaGD:
+            "",
+
+        playgamaUrl:
+            "https://playgama.com/game/rivals-fps-online-shooter",
+
+        descripcion:
+            "RIVALS FPS: Online Shooter es un shooter multijugador gratuito con batallas dinámicas, diferentes mapas, modos de juego y combates en primera persona.",
+
+        instrucciones:
+            "PC: WASD para moverte, mouse para mirar, Space para saltar, C para agacharte y E para interactuar.\n\nMóvil: joystick virtual para moverte y gestos en la pantalla para controlar la cámara.",
+
+        generos: [
+            "accion",
+            "arcade",
+            "3d",
+            "multijugador",
+            "disparos",
+            "co-op",
+            "fps"
+        ],
+
+        destacado: true,
+
+        nuevo: true,
+
+        proveedor: "playgama"
     }
 
 ];
 
 
-/*
-=========================================================
- FUNCIONES DEL CATÁLOGO
-=========================================================
-*/
-
+// ==========================================
+// FUNCIONES DEL CATÁLOGO
+// ==========================================
 
 function obtenerJuegos() {
 
@@ -162,6 +208,10 @@ function buscarJuegos(texto) {
 
 }
 
+
+// ==========================================
+// INFORMACIÓN DEL CATÁLOGO
+// ==========================================
 
 console.log(
     "🎮 JuegosGratis - catálogo cargado"
