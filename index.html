@@ -35,7 +35,7 @@
     /* ENCABEZADO */
     header {
       background-color: var(--bg-header);
-      padding: 1rem 2rem;
+      padding: 0.8rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -48,25 +48,13 @@
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 10px;
     }
 
-    .logo-badge {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      color: #000;
-      font-weight: 900;
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 1.2rem;
-    }
-
-    .logo-text {
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      background: linear-gradient(to right, #fff, var(--accent-cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* ESTILO PARA LA IMAGEN DEL LOGO */
+    .site-logo {
+      height: 45px;
+      width: auto;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -290,8 +278,7 @@
   <!-- ENCABEZADO -->
   <header>
     <div class="logo-container">
-      <span class="logo-badge">JG</span>
-      <span class="logo-text">JUEGOSGRATIS.SITE</span>
+      <img src="logo.png" alt="Juegos Gratis Site" class="site-logo">
     </div>
     
     <ul class="nav-links">
