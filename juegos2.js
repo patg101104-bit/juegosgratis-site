@@ -1,7 +1,24 @@
+```javascript
+/* =========================================================
+   JUEGOSGRATIS
+   CATÁLOGO PLAYGAMA
+   ========================================================= */
+
 let juegos = [];
 
 const CATALOGO_URL = "games.json";
 
+
+/* =========================================================
+   CONFIGURACIÓN
+   ========================================================= */
+
+const JUEGOS_POR_PAGINA = 24;
+
+
+/* =========================================================
+   LIMPIAR URL
+   ========================================================= */
 
 function limpiarUrl(url) {
 
@@ -11,47 +28,92 @@ function limpiarUrl(url) {
 
     let resultado = url.trim();
 
-    // Convierte enlaces Markdown:
-    // [https://ejemplo.com](https://ejemplo.com)
-    const match = resultado.match(
+    /*
+        Convierte:
+
+        [texto](https://ejemplo.com)
+
+        en:
+
+        https://ejemplo.com
+    */
+
+    const markdown = resultado.match(
         /^\[.*?\]\((https?:\/\/.*?)\)$/
     );
 
-    if (match) {
-        resultado = match[1];
+    if (markdown) {
+        resultado = markdown[1];
     }
+
+    /*
+        Elimina comillas exteriores.
+    */
+
+    resultado = resultado.replace(
+        /^["']|["']$/g,
+        ""
+    );
 
     return resultado;
 }
 
 
+/* =========================================================
+   OBTENER IMAGEN
+   ========================================================= */
+
 function obtenerImagen(game) {
 
-    if (Array.isArray(game.images)) {
+    if (
+        Array.isArray(game.images) &&
+        game.images.length > 0
+    ) {
 
-        for (const imagen of game.images) {
+        const imagen =
+            limpiarUrl(
+                game.images[0]
+            );
 
-            const url = limpiarUrl(imagen);
-
-            if (url) {
-                return url;
-            }
-
+        if (imagen) {
+            return imagen;
         }
-
     }
+
 
     if (game.imageSrc) {
-        return limpiarUrl(game.imageSrc);
+
+        const imagen =
+            limpiarUrl(
+                game.imageSrc
+            );
+
+        if (imagen) {
+            return imagen;
+        }
     }
 
+
     if (game.imageSrcSquare) {
-        return limpiarUrl(game.imageSrcSquare);
+
+        const imagen =
+            limpiarUrl(
+                game.imageSrcSquare
+            );
+
+        if (imagen) {
+            return imagen;
+        }
     }
+
 
     return "";
 }
 
+
+/* =========================================================
+   OBTENER CATEGORÍA
+   ========================================================= */
 
 function obtenerCategoria(game) {
 
@@ -59,188 +121,312 @@ function obtenerCategoria(game) {
         Array.isArray(game.genres) &&
         game.genres.length > 0
     ) {
+
         return game.genres[0];
+
     }
+
 
     if (
         Array.isArray(game.tags) &&
         game.tags.length > 0
     ) {
+
         return game.tags[0];
+
     }
+
 
     return "otros";
 }
 
 
+/* =========================================================
+   CREAR ID
+   ========================================================= */
+
+function crearIdJuego(game) {
+
+    if (game.slug) {
+        return game.slug;
+    }
+
+
+    if (game.id) {
+        return String(game.id);
+    }
+
+
+    return "game-" +
+        Math.random()
+            .toString(36)
+            .substring(2, 10);
+}
+
+
+/* =========================================================
+   CONVERTIR JUEGO
+   ========================================================= */
+
 function convertirJuego(game) {
 
-    if (!game || typeof game !== "object") {
+    if (!game) {
         return null;
     }
 
-    const url = limpiarUrl(game.gameURL);
+
+    const url =
+        limpiarUrl(
+            game.gameURL
+        );
+
 
     if (!url) {
         return null;
     }
 
+
     return {
 
         id:
-            game.slug ||
-            String(game.id || Math.random()),
+            crearIdJuego(game),
+
 
         nombre:
             game.title ||
             "Juego sin título",
 
+
         categoria:
             obtenerCategoria(game),
 
-        rating: 0,
+
+        rating:
+            0,
+
 
         imagen:
             obtenerImagen(game),
 
-        url: url,
+
+        url:
+            url,
+
 
         paginaGD:
-            limpiarUrl(game.playgamaGameUrl),
+            limpiarUrl(
+                game.playgamaGameUrl
+            ),
 
-        destacado: false,
 
-        nuevo: false,
+        destacado:
+            false,
+
+
+        nuevo:
+            false,
+
 
         playgamaId:
             game.id
                 ? String(game.id)
                 : "",
 
+
         slug:
             game.slug || "",
+
 
         descripcion:
             game.description || "",
 
+
         instrucciones:
             game.howToPlayText || "",
+
 
         generos:
             Array.isArray(game.genres)
                 ? game.genres
                 : [],
 
+
         etiquetas:
             Array.isArray(game.tags)
                 ? game.tags
                 : [],
 
+
         idiomas:
-            Array.isArray(game.supportedLanguages)
+            Array.isArray(
+                game.supportedLanguages
+            )
                 ? game.supportedLanguages
                 : [],
 
+
         mobileReady:
-            Array.isArray(game.mobileReady)
+            Array.isArray(
+                game.mobileReady
+            )
                 ? game.mobileReady
                 : [],
 
+
         comprasDentroDelJuego:
-            game.inGamePurchases || "No",
+            game.inGamePurchases ||
+            "No",
+
 
         orientacion:
-            game.screenOrientation || {},
+            game.screenOrientation ||
+            {},
 
-        playgama: true
+
+        playgama:
+            true
+
     };
+
 }
 
 
+/* =========================================================
+   CARGAR CATÁLOGO
+   ========================================================= */
+
 async function cargarCatalogo() {
 
-    console.log("🎮 Cargando games.json...");
+    console.log(
+        "🎮 Cargando games.json..."
+    );
+
 
     try {
 
-        const respuesta = await fetch(
-            CATALOGO_URL + "?v=" + Date.now()
-        );
+        const respuesta =
+            await fetch(
+                CATALOGO_URL,
+                {
+                    cache: "no-cache"
+                }
+            );
+
 
         if (!respuesta.ok) {
 
             throw new Error(
-                "HTTP " + respuesta.status
+                "HTTP " +
+                respuesta.status
             );
 
         }
 
-        const datos = await respuesta.json();
 
-        let originales = [];
+        const datos =
+            await respuesta.json();
 
 
-        if (Array.isArray(datos.segments)) {
+        let juegosOriginales = [];
 
-            for (const segmento of datos.segments) {
 
-                if (
-                    segmento &&
-                    Array.isArray(segmento.hits)
-                ) {
+        /*
+            Formato principal de Playgama.
+        */
 
-                    originales.push(
-                        ...segmento.hits
-                    );
+        if (
+            Array.isArray(
+                datos.segments
+            )
+        ) {
+
+            datos.segments.forEach(
+                segmento => {
+
+                    if (
+                        Array.isArray(
+                            segmento.hits
+                        )
+                    ) {
+
+                        juegosOriginales.push(
+                            ...segmento.hits
+                        );
+
+                    }
 
                 }
-
-            }
+            );
 
         }
 
 
+        /*
+            Compatibilidad con otros
+            formatos posibles.
+        */
+
         if (
-            originales.length === 0 &&
+            juegosOriginales.length === 0 &&
             Array.isArray(datos.hits)
         ) {
 
-            originales = datos.hits;
+            juegosOriginales =
+                datos.hits;
 
         }
 
 
         console.log(
             "🎮 Juegos encontrados en games.json:",
-            originales.length
+            juegosOriginales.length
         );
 
 
-        const convertidos = originales
-            .map(convertirJuego)
-            .filter(Boolean);
+        /*
+            Convertir juegos.
+        */
+
+        const convertidos =
+            juegosOriginales
+                .map(
+                    convertirJuego
+                )
+                .filter(Boolean);
 
 
-        const mapa = new Map();
+        /*
+            Eliminar duplicados.
+        */
+
+        const mapa =
+            new Map();
 
 
-        for (const juego of convertidos) {
+        convertidos.forEach(
+            juego => {
 
-            if (!mapa.has(juego.id)) {
+                if (
+                    !mapa.has(
+                        juego.id
+                    )
+                ) {
 
-                mapa.set(
-                    juego.id,
-                    juego
-                );
+                    mapa.set(
+                        juego.id,
+                        juego
+                    );
+
+                }
 
             }
-
-        }
-
-
-        juegos = Array.from(
-            mapa.values()
         );
+
+
+        juegos =
+            Array.from(
+                mapa.values()
+            );
 
 
         console.log(
@@ -249,22 +435,70 @@ async function cargarCatalogo() {
         );
 
 
+        /*
+            Comprobar RIVALS FPS.
+        */
+
+        const rivals =
+            juegos.find(
+                juego =>
+                    juego.id ===
+                    "rivals-fps-online-shooter"
+            );
+
+
+        if (rivals) {
+
+            console.log(
+                "🔫 RIVALS FPS encontrado."
+            );
+
+        } else {
+
+            console.log(
+                "ℹ️ RIVALS FPS no está dentro de este catálogo."
+            );
+
+        }
+
+
+        /*
+            Avisar al index.html
+            de que terminó la carga.
+        */
+
         document.dispatchEvent(
-            new CustomEvent("catalogoCargado")
+            new CustomEvent(
+                "catalogoCargado"
+            )
         );
 
 
     } catch (error) {
 
         console.error(
-            "❌ No se pudo cargar games.json:",
+            "❌ Error cargando games.json:",
             error
+        );
+
+
+        document.dispatchEvent(
+            new CustomEvent(
+                "catalogoError",
+                {
+                    detail: error
+                }
+            )
         );
 
     }
 
 }
 
+
+/* =========================================================
+   FUNCIONES DEL CATÁLOGO
+   ========================================================= */
 
 function obtenerJuegos() {
 
@@ -276,13 +510,16 @@ function obtenerJuegos() {
 function obtenerJuegoPorId(id) {
 
     return juegos.find(
-        juego => juego.id === id
+        juego =>
+            juego.id === id
     );
 
 }
 
 
-function obtenerJuegosPorCategoria(categoria) {
+function obtenerJuegosPorCategoria(
+    categoria
+) {
 
     if (
         !categoria ||
@@ -293,45 +530,97 @@ function obtenerJuegosPorCategoria(categoria) {
 
     }
 
+
     const buscada =
         String(categoria)
             .toLowerCase()
             .trim();
 
 
-    return juegos.filter(juego => {
+    return juegos.filter(
+        juego => {
 
-        const categorias = [
-            juego.categoria,
-            ...juego.generos,
-            ...juego.etiquetas
-        ];
+            const categorias = [
+
+                juego.categoria,
+
+                ...juego.generos,
+
+                ...juego.etiquetas
+
+            ];
 
 
-        return categorias.some(valor =>
-            String(valor)
-                .toLowerCase()
-                .includes(buscada)
-        );
+            return categorias.some(
+                categoriaJuego =>
 
-    });
+                    String(
+                        categoriaJuego
+                    )
+                        .toLowerCase()
+                        .includes(
+                            buscada
+                        )
+            );
+
+        }
+    );
 
 }
 
+
+/* =========================================================
+   POPULARES
+   ========================================================= */
 
 function obtenerJuegosDestacados() {
 
-    return juegos.slice(0, 24);
+    /*
+        Mientras Playgama no nos entregue
+        una puntuación/ranking utilizable,
+        tomamos los primeros juegos del
+        catálogo como selección destacada.
+    */
+
+    return juegos.slice(
+        0,
+        Math.min(
+            JUEGOS_POR_PAGINA,
+            juegos.length
+        )
+    );
 
 }
 
+
+/* =========================================================
+   NUEVOS
+   ========================================================= */
 
 function obtenerJuegosNuevos() {
 
-    return juegos.slice(0, 24);
+    /*
+        El JSON actual no proporciona
+        una fecha de publicación fiable.
+
+        Por ahora utilizamos el comienzo
+        del catálogo como selección.
+    */
+
+    return juegos.slice(
+        0,
+        Math.min(
+            JUEGOS_POR_PAGINA,
+            juegos.length
+        )
+    );
 
 }
 
+
+/* =========================================================
+   BUSCAR
+   ========================================================= */
 
 function buscarJuegos(texto) {
 
@@ -348,62 +637,90 @@ function buscarJuegos(texto) {
     }
 
 
-    return juegos.filter(juego => {
+    return juegos.filter(
+        juego => {
 
-        const contenido = [
+            const contenido = [
 
-            juego.nombre,
+                juego.nombre,
 
-            juego.categoria,
+                juego.categoria,
 
-            juego.descripcion,
+                juego.descripcion,
 
-            ...juego.generos,
+                juego.instrucciones,
 
-            ...juego.etiquetas
+                ...juego.generos,
 
-        ]
-            .join(" ")
-            .toLowerCase();
+                ...juego.etiquetas
+
+            ]
+                .join(" ")
+                .toLowerCase();
 
 
-        return contenido.includes(busqueda);
+            return contenido.includes(
+                busqueda
+            );
 
-    });
+        }
+    );
 
 }
 
+
+/* =========================================================
+   CATEGORÍAS
+   ========================================================= */
 
 function obtenerCategorias() {
 
-    const categorias = new Set();
+    const categorias =
+        new Set();
 
 
-    for (const juego of juegos) {
+    juegos.forEach(
+        juego => {
 
-        for (const genero of juego.generos) {
+            juego.generos.forEach(
+                genero => {
 
-            if (genero) {
+                    if (genero) {
 
-                categorias.add(
-                    String(genero)
-                );
+                        categorias.add(
+                            String(
+                                genero
+                            )
+                        );
 
-            }
+                    }
+
+                }
+            );
 
         }
+    );
 
-    }
 
-
-    return Array.from(categorias).sort();
+    return Array.from(
+        categorias
+    ).sort();
 
 }
 
+
+/* =========================================================
+   INFORMACIÓN
+   ========================================================= */
 
 console.log(
     "🎮 JuegosGratis - catálogo iniciado"
 );
 
 
+/* =========================================================
+   INICIAR
+   ========================================================= */
+
 cargarCatalogo();
+```
