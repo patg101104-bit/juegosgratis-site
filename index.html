@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -8,35 +9,59 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>JuegosGratis.site | Juegos gratis online</title>
-
   <meta
     name="description"
-    content="Juega videojuegos gratis directamente desde tu navegador en JuegosGratis.site."
+    content="JuegosGratis.site - Juega videojuegos gratis directamente desde tu navegador."
   >
 
+  <meta
+    name="theme-color"
+    content="#070b14"
+  >
+
+  <title>JuegosGratis.site | Juegos gratis online</title>
+
+
   <style>
+
     /* =====================================================
        VARIABLES
     ===================================================== */
 
     :root {
-      --bg-dark: #070f1a;
-      --bg-header: #0b1625;
-      --bg-card: #101d2e;
-      --bg-card-hover: #15263c;
+
+      --bg-main: #060a12;
+      --bg-secondary: #0a101c;
+      --bg-card: #0e1624;
+      --bg-card-2: #111c2c;
 
       --text-main: #f8fafc;
-      --text-muted: #8fa3b8;
+      --text-secondary: #a4b1c2;
+      --text-muted: #65758a;
 
-      --card-border: #24364d;
+      --border: #1d2b3d;
 
-      --accent-cyan: #00f2fe;
-      --accent-purple: #7928ca;
+      --cyan: #00e5ff;
+      --cyan-dark: #00a8bd;
 
-      --danger: #ff3355;
+      --purple: #8b3dff;
+      --purple-dark: #5e20b8;
 
-      --max-width: 1200px;
+      --pink: #ff3d81;
+
+      --green: #2ee88a;
+
+      --yellow: #ffd43b;
+
+      --danger: #ff4566;
+
+      --container: 1250px;
+
+      --radius: 14px;
+
+      --shadow:
+        0 10px 35px rgba(0,0,0,.35);
+
     }
 
 
@@ -50,12 +75,31 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
-      background-color: var(--bg-dark);
+
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(139,61,255,.08),
+          transparent 25%
+        ),
+
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(0,229,255,.06),
+          transparent 25%
+        ),
+
+        var(--bg-main);
+
       color: var(--text-main);
 
       font-family:
@@ -64,21 +108,28 @@
         BlinkMacSystemFont,
         "Segoe UI",
         Roboto,
+        Arial,
         sans-serif;
-
-      min-height: 100vh;
 
       display: flex;
       flex-direction: column;
+
     }
+
 
     button,
     input {
       font-family: inherit;
     }
 
+
     button {
       cursor: pointer;
+    }
+
+
+    a {
+      color: inherit;
     }
 
 
@@ -87,158 +138,263 @@
     ===================================================== */
 
     header {
-      background-color: var(--bg-header);
-
-      padding: 0.8rem 2rem;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      gap: 1.5rem;
-
-      border-bottom: 1px solid var(--card-border);
 
       position: sticky;
+
       top: 0;
 
-      z-index: 100;
+      z-index: 1000;
 
-      backdrop-filter: blur(12px);
+      background:
+        rgba(6,10,18,.90);
+
+      backdrop-filter:
+        blur(16px);
+
+      border-bottom:
+        1px solid var(--border);
+
     }
 
 
-    /* LOGO */
+    .header-inner {
 
-    .logo-container {
+      width: 100%;
+
+      max-width: var(--container);
+
+      margin: auto;
+
+      min-height: 72px;
+
+      padding:
+        0 20px;
+
       display: flex;
+
       align-items: center;
-      flex-shrink: 0;
+
+      gap: 28px;
+
     }
 
-    .site-logo {
-      height: 45px;
-      width: auto;
-      object-fit: contain;
-    }
 
-    .text-logo {
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
+    .logo {
+
       display: flex;
+
       align-items: center;
-      gap: 8px;
 
-      font-size: 1.35rem;
-      font-weight: 900;
-
-      color: white;
+      gap: 10px;
 
       text-decoration: none;
+
+      flex-shrink: 0;
+
     }
 
+
     .logo-icon {
-      width: 40px;
-      height: 40px;
+
+      width: 42px;
+
+      height: 42px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
-      border-radius: 10px;
+      border-radius: 12px;
+
+      font-size: 21px;
 
       background:
         linear-gradient(
           135deg,
-          var(--accent-purple),
-          var(--accent-cyan)
+          var(--purple),
+          var(--cyan)
         );
 
-      font-size: 20px;
+      box-shadow:
+        0 0 20px
+        rgba(0,229,255,.18);
+
     }
 
-    .logo-domain {
-      color: var(--accent-cyan);
+
+    .logo-text {
+
+      font-size: 1.2rem;
+
+      font-weight: 900;
+
+      letter-spacing: -.5px;
+
+      white-space: nowrap;
+
     }
 
 
-    /* NAVEGACIÓN */
+    .logo-text span {
+
+      color: var(--cyan);
+
+    }
+
+
+    /* =====================================================
+       NAV
+    ===================================================== */
+
+    nav {
+
+      flex: 1;
+
+    }
+
 
     .nav-links {
-      display: flex;
-
-      gap: 20px;
 
       list-style: none;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 22px;
+
     }
 
+
     .nav-links a {
-      color: var(--text-muted);
 
       text-decoration: none;
 
-      font-size: 0.85rem;
-      font-weight: 700;
+      color: var(--text-secondary);
 
-      transition: color 0.2s;
+      font-size: .82rem;
+
+      font-weight: 800;
+
+      transition:
+        color .2s ease;
+
     }
+
 
     .nav-links a:hover,
     .nav-links a.active {
-      color: var(--accent-cyan);
+
+      color: var(--cyan);
+
     }
 
 
-    /* BUSCADOR */
+    /* =====================================================
+       SEARCH
+    ===================================================== */
 
-    .search-bar {
-      width: 220px;
+    .search {
+
+      position: relative;
+
+      width: 230px;
+
+      flex-shrink: 0;
+
     }
 
-    .search-bar input {
+
+    .search input {
+
       width: 100%;
 
-      padding: 0.6rem 1.2rem;
+      height: 40px;
 
-      border-radius: 20px;
+      padding:
+        0 40px 0 16px;
 
-      border: 1px solid var(--card-border);
+      border-radius: 22px;
 
-      background-color: #0d1f35;
+      border:
+        1px solid var(--border);
+
+      background:
+        #0b1422;
 
       color: var(--text-main);
 
       outline: none;
 
-      font-size: 0.85rem;
+      font-size: .82rem;
 
-      transition: 0.2s;
+      transition:
+        border-color .2s,
+        box-shadow .2s;
+
     }
 
-    .search-bar input::placeholder {
-      color: #64748b;
+
+    .search input::placeholder {
+
+      color: var(--text-muted);
+
     }
 
-    .search-bar input:focus {
-      border-color: var(--accent-cyan);
+
+    .search input:focus {
+
+      border-color:
+        var(--cyan);
 
       box-shadow:
-        0 0 0 3px rgba(0, 242, 254, 0.08);
+        0 0 0 3px
+        rgba(0,229,255,.08);
+
+    }
+
+
+    .search-icon {
+
+      position: absolute;
+
+      right: 14px;
+
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      color: var(--text-muted);
+
+      pointer-events: none;
+
     }
 
 
     /* =====================================================
-       CONTENIDO PRINCIPAL
+       MAIN
     ===================================================== */
 
     main {
-      flex: 1;
-
-      max-width: var(--max-width);
-
-      margin: 0 auto;
-
-      padding: 2rem 1rem;
 
       width: 100%;
+
+      max-width: var(--container);
+
+      margin: auto;
+
+      padding:
+        28px 20px 60px;
+
+      flex: 1;
+
     }
 
 
@@ -247,473 +403,1106 @@
     ===================================================== */
 
     .hero {
+
       position: relative;
-
-      min-height: 250px;
-
-      display: flex;
-      align-items: center;
-
-      padding: 3rem;
-
-      margin-bottom: 2rem;
 
       overflow: hidden;
 
-      border-radius: 18px;
+      min-height: 340px;
 
-      border: 1px solid var(--card-border);
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        20px;
+
+      padding:
+        55px 50px;
+
+      display: flex;
+
+      align-items: center;
 
       background:
+
         radial-gradient(
-          circle at 85% 20%,
-          rgba(0, 242, 254, 0.16),
+          circle at 85% 50%,
+          rgba(0,229,255,.12),
           transparent 30%
         ),
 
         radial-gradient(
-          circle at 15% 90%,
-          rgba(121, 40, 202, 0.25),
+          circle at 55% 100%,
+          rgba(139,61,255,.18),
           transparent 40%
         ),
 
         linear-gradient(
           135deg,
-          #0e1b2d,
-          #08111e
+          #0c1524,
+          #080d17
         );
+
+      box-shadow:
+        var(--shadow);
+
     }
 
+
+    .hero::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 420px;
+
+      height: 420px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(0,229,255,.12);
+
+      right:
+        -170px;
+
+      top:
+        -130px;
+
+    }
+
+
+    .hero::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 260px;
+
+      height: 260px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(139,61,255,.15);
+
+      right:
+        70px;
+
+      bottom:
+        -170px;
+
+    }
+
+
     .hero-content {
+
       position: relative;
 
       z-index: 2;
 
-      max-width: 700px;
-    }
+      max-width: 680px;
 
-    .hero-label {
-      color: var(--accent-cyan);
-
-      font-size: 0.75rem;
-
-      font-weight: 800;
-
-      letter-spacing: 2px;
-
-      margin-bottom: 0.8rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-
-      line-height: 1.05;
-
-      margin-bottom: 1rem;
-
-      letter-spacing: -1px;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-
-      max-width: 600px;
-
-      line-height: 1.6;
-
-      font-size: 1rem;
-    }
-
-    .hero-controller {
-      position: absolute;
-
-      right: 7%;
-
-      font-size: 8rem;
-
-      opacity: 0.12;
-
-      transform: rotate(-10deg);
     }
 
 
-    /* =====================================================
-       PUBLICIDAD
-    ===================================================== */
+    .hero-badge {
 
-    .ad-container {
-      min-height: 90px;
-
-      margin: 1.5rem 0 2.5rem;
-
-      display: flex;
+      display: inline-flex;
 
       align-items: center;
 
-      justify-content: center;
+      gap: 7px;
 
-      border: 1px dashed #34465d;
+      padding:
+        6px 12px;
 
-      border-radius: 10px;
-
-      background-color: #09131f;
-
-      color: #60758c;
-
-      font-size: 0.7rem;
-
-      letter-spacing: 2px;
-    }
-
-
-    /* =====================================================
-       TÍTULOS
-    ===================================================== */
-
-    .section-title {
-      font-size: 1.4rem;
-
-      font-weight: 800;
-
-      margin-bottom: 1rem;
-
-      color: var(--text-main);
-    }
-
-
-    /* =====================================================
-       DESTACADOS
-    ===================================================== */
-
-    .featured-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(280px, 1fr)
-        );
-
-      gap: 1.5rem;
-
-      margin-bottom: 2.5rem;
-    }
-
-    .featured-card {
-      position: relative;
-
-      border-radius: 12px;
-
-      overflow: hidden;
-
-      height: 180px;
-
-      cursor: pointer;
-
-      border: 2px solid transparent;
-
-      transition: all 0.3s ease;
-
-      background: #0b1625;
-    }
-
-    .featured-card:hover {
-      border-color: var(--accent-cyan);
-
-      box-shadow:
-        0 0 20px
-        rgba(0, 242, 254, 0.35);
-
-      transform: translateY(-3px);
-    }
-
-    .featured-card img {
-      width: 100%;
-
-      height: 100%;
-
-      object-fit: cover;
-
-      display: block;
-    }
-
-    .featured-overlay {
-      position: absolute;
-
-      bottom: 0;
-
-      left: 0;
-
-      right: 0;
-
-      padding: 1rem;
+      border-radius: 20px;
 
       background:
-        linear-gradient(
-          to top,
-          rgba(7, 16, 26, 0.98),
-          transparent
-        );
-    }
+        rgba(0,229,255,.07);
 
-    .featured-title {
-      font-size: 1.1rem;
+      border:
+        1px solid
+        rgba(0,229,255,.2);
 
-      font-weight: 800;
-    }
+      color:
+        var(--cyan);
 
+      font-size: .7rem;
 
-    /* =====================================================
-       GRILLA DE JUEGOS
-    ===================================================== */
-
-    .grid-games {
-      display: grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fill,
-          minmax(170px, 1fr)
-        );
-
-      gap: 1.2rem;
-    }
-
-
-    /* =====================================================
-       TARJETAS
-    ===================================================== */
-
-    .card {
-      background-color: var(--bg-card);
-
-      border-radius: 12px;
-
-      overflow: hidden;
-
-      cursor: pointer;
-
-      border: 1px solid var(--card-border);
-
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-
-      display: flex;
-
-      flex-direction: column;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-
-      border-color: var(--accent-purple);
-
-      box-shadow:
-        0 5px 20px
-        rgba(121, 40, 202, 0.3);
-    }
-
-    .card img {
-      width: 100%;
-
-      height: 130px;
-
-      object-fit: cover;
-
-      display: block;
-    }
-
-    .card-info {
-      padding: 0.8rem;
-
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 4px;
-
-      flex: 1;
-    }
-
-    .card-title {
-      font-size: 0.9rem;
-
-      font-weight: 700;
-
-      white-space: nowrap;
-
-      overflow: hidden;
-
-      text-overflow: ellipsis;
-    }
-
-    .card-tag {
-      font-size: 0.75rem;
-
-      color: var(--text-muted);
-    }
-
-    .card-bottom {
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      margin-top: auto;
-
-      padding-top: 8px;
-    }
-
-    .rating {
-      font-size: 0.75rem;
-
-      color: #ffcc00;
-
-      font-weight: bold;
-    }
-
-    .btn-play {
-      background:
-        linear-gradient(
-          135deg,
-          var(--accent-cyan),
-          var(--accent-purple)
-        );
-
-      color: #fff;
-
-      border: none;
-
-      padding: 0.35rem 0.75rem;
-
-      border-radius: 6px;
-
-      font-size: 0.75rem;
-
-      font-weight: 700;
-    }
-
-    .btn-play:hover {
-      filter: brightness(1.15);
-    }
-
-
-    /* =====================================================
-       REPRODUCTOR
-    ===================================================== */
-
-    #game-container {
-      display: none;
-
-      width: 100%;
-
-      max-width: 1000px;
-
-      margin: 2rem auto;
-
-      background: var(--bg-card);
-
-      border-radius: 12px;
-
-      overflow: hidden;
-
-      border: 1px solid var(--accent-cyan);
-
-      box-shadow:
-        0 0 25px
-        rgba(0, 242, 254, 0.2);
-    }
-
-    .game-header {
-      padding: 0.8rem 1rem;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 1rem;
-
-      background: #050b12;
-
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    .game-title {
-      font-weight: 800;
-    }
-
-    .game-label {
-      display: block;
-
-      color: var(--accent-cyan);
-
-      font-size: 0.65rem;
+      font-weight: 900;
 
       letter-spacing: 1px;
 
-      margin-bottom: 3px;
+      margin-bottom: 16px;
+
     }
 
-    #game-frame {
-      width: 100%;
 
-      height: 600px;
+    .hero h1 {
 
-      border: none;
+      font-size:
+        clamp(2.2rem,5vw,4rem);
 
-      display: block;
+      line-height:
+        1.02;
 
-      background: #000;
+      letter-spacing:
+        -2px;
+
+      margin-bottom:
+        18px;
+
     }
 
-    .close-btn {
-      background: var(--danger);
 
-      color: white;
+    .gradient-text {
 
-      border: none;
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          #73f7ff,
+          #b174ff
+        );
 
-      padding: 0.5rem 1.2rem;
+      -webkit-background-clip:
+        text;
 
-      border-radius: 6px;
+      background-clip:
+        text;
 
-      cursor: pointer;
+      color:
+        transparent;
 
-      font-weight: bold;
     }
 
-    .close-btn:hover {
-      filter: brightness(1.1);
+
+    .hero p {
+
+      color:
+        var(--text-secondary);
+
+      line-height:
+        1.7;
+
+      max-width:
+        580px;
+
+      font-size:
+        .98rem;
+
+      margin-bottom:
+        25px;
+
     }
 
-    .game-message {
-      padding: 0.7rem 1rem;
 
-      color: var(--text-muted);
+    .hero-actions {
 
-      font-size: 0.75rem;
+      display:
+        flex;
 
-      background: #050b12;
+      gap:
+        12px;
+
+      flex-wrap:
+        wrap;
+
+    }
+
+
+    .hero-button {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      min-height:
+        44px;
+
+      padding:
+        0 20px;
+
+      border-radius:
+        9px;
+
+      border:
+        none;
+
+      font-weight:
+        800;
+
+      text-decoration:
+        none;
+
+      font-size:
+        .82rem;
+
+    }
+
+
+    .hero-button.primary {
+
+      color:
+        #031015;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--cyan),
+          #72f6ff
+        );
+
+      box-shadow:
+        0 5px 20px
+        rgba(0,229,255,.15);
+
+    }
+
+
+    .hero-button.secondary {
+
+      background:
+        rgba(255,255,255,.04);
+
+      border:
+        1px solid var(--border);
+
+      color:
+        var(--text-main);
+
+    }
+
+
+    .hero-decoration {
+
+      position:
+        absolute;
+
+      right:
+        8%;
+
+      font-size:
+        9rem;
+
+      opacity:
+        .12;
+
+      transform:
+        rotate(-12deg);
+
+      filter:
+        drop-shadow(
+          0 0 30px
+          var(--cyan)
+        );
+
     }
 
 
     /* =====================================================
-       SIN RESULTADOS
+       AD
+    ===================================================== */
+
+    .ad {
+
+      min-height:
+        90px;
+
+      margin:
+        25px 0;
+
+      border:
+        1px dashed
+        #26384d;
+
+      border-radius:
+        10px;
+
+      background:
+        rgba(7,13,23,.55);
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      color:
+        #53677d;
+
+      font-size:
+        .65rem;
+
+      font-weight:
+        700;
+
+      letter-spacing:
+        2px;
+
+    }
+
+
+    /* =====================================================
+       SECTION HEADER
+    ===================================================== */
+
+    .section-header {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      margin:
+        38px 0 16px;
+
+      gap:
+        15px;
+
+    }
+
+
+    .section-title {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        9px;
+
+      font-size:
+        1.25rem;
+
+      font-weight:
+        900;
+
+    }
+
+
+    .section-title .line {
+
+      width:
+        4px;
+
+      height:
+        22px;
+
+      border-radius:
+        4px;
+
+      background:
+        linear-gradient(
+          var(--cyan),
+          var(--purple)
+        );
+
+    }
+
+
+    .section-link {
+
+      color:
+        var(--cyan);
+
+      text-decoration:
+        none;
+
+      font-size:
+        .75rem;
+
+      font-weight:
+        800;
+
+    }
+
+
+    /* =====================================================
+       FEATURED
+    ===================================================== */
+
+    .featured-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:
+        16px;
+
+    }
+
+
+    .featured-card {
+
+      position:
+        relative;
+
+      height:
+        210px;
+
+      border-radius:
+        var(--radius);
+
+      overflow:
+        hidden;
+
+      border:
+        1px solid var(--border);
+
+      cursor:
+        pointer;
+
+      background:
+        var(--bg-card);
+
+      transition:
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
+
+    }
+
+
+    .featured-card:hover {
+
+      transform:
+        translateY(-5px);
+
+      border-color:
+        var(--cyan);
+
+      box-shadow:
+        0 10px 35px
+        rgba(0,229,255,.12);
+
+    }
+
+
+    .featured-card img {
+
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
+
+      transition:
+        transform .4s;
+
+    }
+
+
+    .featured-card:hover img {
+
+      transform:
+        scale(1.06);
+
+    }
+
+
+    .featured-overlay {
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      display:
+        flex;
+
+      align-items:
+        flex-end;
+
+      padding:
+        18px;
+
+      background:
+        linear-gradient(
+          transparent 30%,
+          rgba(3,7,13,.95)
+        );
+
+    }
+
+
+    .featured-info {
+
+      width:
+        100%;
+
+    }
+
+
+    .featured-title {
+
+      font-size:
+        1.15rem;
+
+      font-weight:
+        900;
+
+      margin-bottom:
+        4px;
+
+    }
+
+
+    .featured-category {
+
+      color:
+        var(--text-secondary);
+
+      font-size:
+        .72rem;
+
+    }
+
+
+    /* =====================================================
+       CATEGORIES
+    ===================================================== */
+
+    .categories {
+
+      display:
+        flex;
+
+      gap:
+        9px;
+
+      flex-wrap:
+        wrap;
+
+      margin-bottom:
+        25px;
+
+    }
+
+
+    .category-btn {
+
+      border:
+        1px solid var(--border);
+
+      background:
+        var(--bg-card);
+
+      color:
+        var(--text-secondary);
+
+      padding:
+        8px 13px;
+
+      border-radius:
+        20px;
+
+      font-size:
+        .72rem;
+
+      font-weight:
+        700;
+
+      transition:
+        .2s;
+
+    }
+
+
+    .category-btn:hover,
+    .category-btn.active {
+
+      background:
+        rgba(0,229,255,.08);
+
+      border-color:
+        var(--cyan);
+
+      color:
+        var(--cyan);
+
+    }
+
+
+    /* =====================================================
+       GAME GRID
+    ===================================================== */
+
+    .games-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(5,1fr);
+
+      gap:
+        15px;
+
+    }
+
+
+    /* =====================================================
+       GAME CARD
+    ===================================================== */
+
+    .game-card {
+
+      background:
+        var(--bg-card);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        12px;
+
+      overflow:
+        hidden;
+
+      cursor:
+        pointer;
+
+      transition:
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
+
+    }
+
+
+    .game-card:hover {
+
+      transform:
+        translateY(-5px);
+
+      border-color:
+        var(--purple);
+
+      box-shadow:
+        0 10px 25px
+        rgba(139,61,255,.12);
+
+    }
+
+
+    .game-image {
+
+      position:
+        relative;
+
+      height:
+        140px;
+
+      overflow:
+        hidden;
+
+      background:
+        #09111e;
+
+    }
+
+
+    .game-image img {
+
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
+
+      display:
+        block;
+
+      transition:
+        transform .35s;
+
+    }
+
+
+    .game-card:hover
+    .game-image img {
+
+      transform:
+        scale(1.07);
+
+    }
+
+
+    .game-badge {
+
+      position:
+        absolute;
+
+      top:
+        8px;
+
+      left:
+        8px;
+
+      padding:
+        4px 7px;
+
+      border-radius:
+        5px;
+
+      background:
+        var(--pink);
+
+      color:
+        white;
+
+      font-size:
+        .58rem;
+
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
+
+    }
+
+
+    .game-badge.new {
+
+      background:
+        var(--green);
+
+      color:
+        #03140c;
+
+    }
+
+
+    .game-info {
+
+      padding:
+        11px;
+
+    }
+
+
+    .game-title {
+
+      font-size:
+        .86rem;
+
+      font-weight:
+        800;
+
+      white-space:
+        nowrap;
+
+      overflow:
+        hidden;
+
+      text-overflow:
+        ellipsis;
+
+      margin-bottom:
+        4px;
+
+    }
+
+
+    .game-category {
+
+      color:
+        var(--text-muted);
+
+      font-size:
+        .67rem;
+
+    }
+
+
+    .game-bottom {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      margin-top:
+        10px;
+
+    }
+
+
+    .rating {
+
+      color:
+        var(--yellow);
+
+      font-size:
+        .7rem;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .play-button {
+
+      border:
+        none;
+
+      border-radius:
+        6px;
+
+      padding:
+        5px 9px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--cyan),
+          var(--purple)
+        );
+
+      color:
+        white;
+
+      font-size:
+        .65rem;
+
+      font-weight:
+        900;
+
+    }
+
+
+    /* =====================================================
+       NO RESULTS
     ===================================================== */
 
     #no-results {
-      display: none;
 
-      text-align: center;
+      display:
+        none;
 
-      padding: 4rem 1rem;
+      text-align:
+        center;
 
-      color: var(--text-muted);
+      padding:
+        50px 20px;
+
+      color:
+        var(--text-secondary);
+
+    }
+
+
+    #no-results strong {
+
+      display:
+        block;
+
+      color:
+        var(--text-main);
+
+      font-size:
+        1.1rem;
+
+      margin-bottom:
+        5px;
+
+    }
+
+
+    /* =====================================================
+       GAME PLAYER
+    ===================================================== */
+
+    #game-container {
+
+      display:
+        none;
+
+      margin:
+        35px auto;
+
+      width:
+        100%;
+
+      max-width:
+        1050px;
+
+      border:
+        1px solid var(--cyan);
+
+      border-radius:
+        15px;
+
+      overflow:
+        hidden;
+
+      background:
+        #05090f;
+
+      box-shadow:
+        0 0 45px
+        rgba(0,229,255,.12);
+
+    }
+
+
+    .player-header {
+
+      min-height:
+        65px;
+
+      padding:
+        10px 15px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        10px;
+
+      background:
+        #080f1a;
+
+      border-bottom:
+        1px solid var(--border);
+
+    }
+
+
+    .player-label {
+
+      color:
+        var(--cyan);
+
+      font-size:
+        .58rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.5px;
+
+      margin-bottom:
+        3px;
+
+    }
+
+
+    #current-game-title {
+
+      font-size:
+        .95rem;
+
+      font-weight:
+        900;
+
+    }
+
+
+    .close-button {
+
+      border:
+        none;
+
+      background:
+        var(--danger);
+
+      color:
+        white;
+
+      border-radius:
+        7px;
+
+      padding:
+        7px 12px;
+
+      font-size:
+        .7rem;
+
+      font-weight:
+        900;
+
+    }
+
+
+    #game-frame {
+
+      width:
+        100%;
+
+      height:
+        600px;
+
+      display:
+        block;
+
+      border:
+        none;
+
+      background:
+        #000;
+
+    }
+
+
+    .player-footer {
+
+      padding:
+        10px 15px;
+
+      color:
+        var(--text-muted);
+
+      font-size:
+        .65rem;
+
+      background:
+        #080f1a;
+
     }
 
 
@@ -722,19 +1511,132 @@
     ===================================================== */
 
     footer {
-      text-align: center;
 
-      padding: 1.5rem;
+      border-top:
+        1px solid var(--border);
 
-      background-color: var(--bg-card);
+      background:
+        #080d16;
 
-      color: var(--text-muted);
+      margin-top:
+        40px;
 
-      font-size: 0.85rem;
+    }
 
-      border-top: 1px solid var(--card-border);
 
-      margin-top: 3rem;
+    .footer-inner {
+
+      max-width:
+        var(--container);
+
+      margin:
+        auto;
+
+      padding:
+        35px 20px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        2fr 1fr 1fr;
+
+      gap:
+        40px;
+
+    }
+
+
+    .footer-brand {
+
+      color:
+        var(--text-secondary);
+
+      font-size:
+        .75rem;
+
+      line-height:
+        1.7;
+
+      max-width:
+        400px;
+
+    }
+
+
+    .footer-brand strong {
+
+      display:
+        block;
+
+      color:
+        var(--text-main);
+
+      font-size:
+        1rem;
+
+      margin-bottom:
+        8px;
+
+    }
+
+
+    .footer-column h3 {
+
+      font-size:
+        .75rem;
+
+      margin-bottom:
+        12px;
+
+    }
+
+
+    .footer-column a {
+
+      display:
+        block;
+
+      color:
+        var(--text-muted);
+
+      text-decoration:
+        none;
+
+      font-size:
+        .7rem;
+
+      margin-bottom:
+        8px;
+
+    }
+
+
+    .footer-column a:hover {
+
+      color:
+        var(--cyan);
+
+    }
+
+
+    .copyright {
+
+      border-top:
+        1px solid var(--border);
+
+      padding:
+        15px 20px;
+
+      text-align:
+        center;
+
+      color:
+        var(--text-muted);
+
+      font-size:
+        .65rem;
+
     }
 
 
@@ -742,176 +1644,317 @@
        RESPONSIVE
     ===================================================== */
 
-    @media (max-width: 900px) {
+    @media(max-width:1050px) {
 
-      header {
-        flex-wrap: wrap;
+      .games-grid {
 
-        justify-content: center;
+        grid-template-columns:
+          repeat(4,1fr);
+
       }
 
-      .logo-container {
-        width: 100%;
+    }
 
-        justify-content: center;
+
+    @media(max-width:850px) {
+
+      .header-inner {
+
+        flex-wrap:
+          wrap;
+
+        padding:
+          12px 16px;
+
       }
+
+
+      nav {
+
+        order:
+          3;
+
+        width:
+          100%;
+
+        overflow-x:
+          auto;
+
+      }
+
 
       .nav-links {
-        order: 3;
 
-        width: 100%;
+        justify-content:
+          center;
 
-        justify-content: center;
-
-        flex-wrap: wrap;
       }
 
-      .search-bar {
-        width: min(300px, 100%);
+
+      .search {
+
+        margin-left:
+          auto;
+
       }
 
-    }
-
-
-    @media (max-width: 600px) {
-
-      main {
-        padding: 1rem;
-      }
-
-      header {
-        padding: 0.8rem 1rem;
-      }
-
-      .hero {
-        padding: 2rem 1.5rem;
-
-        min-height: 300px;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
-      .hero-controller {
-        font-size: 5rem;
-
-        right: 5%;
-
-        bottom: 10%;
-      }
 
       .featured-grid {
-        grid-template-columns: 1fr;
-      }
 
-      .grid-games {
         grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+          repeat(2,1fr);
 
-        gap: 0.8rem;
       }
 
-      .card img {
-        height: 110px;
+
+      .games-grid {
+
+        grid-template-columns:
+          repeat(3,1fr);
+
       }
 
-      .card-info {
-        padding: 0.65rem;
-      }
 
-      #game-frame {
-        height: 500px;
+      .footer-inner {
+
+        grid-template-columns:
+          1fr 1fr;
+
       }
 
     }
 
 
-    @media (max-width: 380px) {
+    @media(max-width:600px) {
 
-      .grid-games {
-        grid-template-columns: 1fr;
+      main {
+
+        padding:
+          18px 12px 40px;
+
+      }
+
+
+      .header-inner {
+
+        gap:
+          12px;
+
+      }
+
+
+      .logo-text {
+
+        font-size:
+          1rem;
+
+      }
+
+
+      .search {
+
+        width:
+          170px;
+
+      }
+
+
+      .nav-links {
+
+        gap:
+          15px;
+
+        justify-content:
+          flex-start;
+
+        padding-bottom:
+          3px;
+
+      }
+
+
+      .hero {
+
+        min-height:
+          330px;
+
+        padding:
+          35px 24px;
+
+      }
+
+
+      .hero h1 {
+
+        font-size:
+          2.35rem;
+
+      }
+
+
+      .hero-decoration {
+
+        right:
+          0;
+
+        bottom:
+          15px;
+
+        font-size:
+          6rem;
+
+      }
+
+
+      .featured-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .games-grid {
+
+        grid-template-columns:
+          repeat(2,1fr);
+
+        gap:
+          10px;
+
+      }
+
+
+      .game-image {
+
+        height:
+          120px;
+
+      }
+
+
+      #game-frame {
+
+        height:
+          500px;
+
+      }
+
+
+      .footer-inner {
+
+        grid-template-columns:
+          1fr;
+
+        gap:
+          25px;
+
+      }
+
+    }
+
+
+    @media(max-width:360px) {
+
+      .games-grid {
+
+        grid-template-columns:
+          1fr;
+
       }
 
     }
 
   </style>
+
 </head>
 
 
 <body>
 
+
   <!-- =====================================================
-       ENCABEZADO
+       HEADER
   ====================================================== -->
 
   <header>
 
-    <div class="logo-container">
+    <div class="header-inner">
 
-      <!-- Por ahora usamos logo de texto.
-           Después podemos poner tu logo definitivo aquí. -->
 
-      <a href="#" class="text-logo">
+      <!-- LOGO -->
 
-        <span class="logo-icon">
+      <a
+        href="#"
+        class="logo"
+      >
+
+        <div class="logo-icon">
           🎮
-        </span>
+        </div>
 
-        <span>
-          JuegosGratis<span class="logo-domain">.site</span>
-        </span>
+        <div class="logo-text">
+          JuegosGratis<span>.site</span>
+        </div>
 
       </a>
 
-    </div>
+
+      <!-- NAV -->
+
+      <nav>
+
+        <ul class="nav-links">
+
+          <li>
+            <a
+              href="#inicio"
+              class="active"
+            >
+              INICIO
+            </a>
+          </li>
+
+          <li>
+            <a href="#categorias">
+              CATEGORÍAS
+            </a>
+          </li>
+
+          <li>
+            <a href="#populares">
+              POPULARES
+            </a>
+          </li>
+
+          <li>
+            <a href="#juegos">
+              JUEGOS
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
 
 
-    <!-- NAVEGACIÓN -->
+      <!-- SEARCH -->
 
-    <nav>
+      <div class="search">
 
-      <ul class="nav-links">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Buscar juego..."
+          autocomplete="off"
+        >
 
-        <li>
-          <a href="#" class="active">
-            INICIO
-          </a>
-        </li>
+        <span class="search-icon">
+          🔎
+        </span>
 
-        <li>
-          <a href="#categorias">
-            CATEGORÍAS
-          </a>
-        </li>
+      </div>
 
-        <li>
-          <a href="#populares">
-            POPULARES
-          </a>
-        </li>
-
-        <li>
-          <a href="#nuevos">
-            NUEVOS
-          </a>
-        </li>
-
-      </ul>
-
-    </nav>
-
-
-    <!-- BUSCADOR -->
-
-    <div class="search-bar">
-
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="🔎 Buscar juego..."
-        autocomplete="off"
-      >
 
     </div>
 
@@ -919,7 +1962,7 @@
 
 
   <!-- =====================================================
-       CONTENIDO
+       MAIN
   ====================================================== -->
 
   <main>
@@ -927,41 +1970,74 @@
 
     <!-- HERO -->
 
-    <section class="hero">
+    <section
+      id="inicio"
+      class="hero"
+    >
 
       <div class="hero-content">
 
-        <div class="hero-label">
-          🎮 JUEGA GRATIS
+        <div class="hero-badge">
+          ⚡ 100% ONLINE · SIN DESCARGAS
         </div>
 
+
         <h1>
-          Videojuegos gratis,
-          directamente en tu navegador.
+
+          Juega gratis.
+
+          <br>
+
+          <span class="gradient-text">
+            En cualquier momento.
+          </span>
+
         </h1>
 
+
         <p>
-          Descubre juegos de acción, carreras,
-          arcade y mucho más. Sin instalaciones.
+
+          Descubre videojuegos gratuitos
+          y juega directamente desde tu navegador.
+          Carreras, acción, arcade, deportes
+          y mucho más.
+
         </p>
+
+
+        <div class="hero-actions">
+
+          <a
+            href="#juegos"
+            class="hero-button primary"
+          >
+            🎮 Explorar juegos
+          </a>
+
+
+          <a
+            href="#categorias"
+            class="hero-button secondary"
+          >
+            Ver categorías
+          </a>
+
+        </div>
 
       </div>
 
-      <div class="hero-controller">
+
+      <div class="hero-decoration">
         🎮
       </div>
 
     </section>
 
 
-    <!-- =================================================
-         ESPACIO PUBLICITARIO
-    ================================================== -->
+    <!-- AD TOP -->
 
-    <div class="ad-container">
-
+    <div class="ad">
       ESPACIO PUBLICITARIO
-
     </div>
 
 
@@ -971,17 +2047,32 @@
 
     <section id="populares">
 
-      <h2 class="section-title">
-        🔥 Juegos destacados
-      </h2>
+      <div class="section-header">
+
+        <h2 class="section-title">
+
+          <span class="line"></span>
+
+          🔥 Juegos destacados
+
+        </h2>
+
+        <a
+          href="#juegos"
+          class="section-link"
+        >
+          Ver todos →
+        </a>
+
+      </div>
 
 
       <div class="featured-grid">
 
 
-        <!-- DESTACADO 1 -->
+        <!-- FEATURED 1 -->
 
-        <div
+        <article
           class="featured-card"
           onclick="cargarJuego(
             'https://html5.gamedistribution.com/rvvAS300/a26b2b6473ba418bb208471c66f7f329/',
@@ -992,22 +2083,32 @@
           <img
             src="https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg"
             alt="Moto X3M"
+            loading="lazy"
           >
+
 
           <div class="featured-overlay">
 
-            <div class="featured-title">
-              🏍️ Moto X3M
+            <div class="featured-info">
+
+              <div class="featured-title">
+                🏍️ Moto X3M
+              </div>
+
+              <div class="featured-category">
+                Carreras · ★ 4.8
+              </div>
+
             </div>
 
           </div>
 
-        </div>
+        </article>
 
 
-        <!-- DESTACADO 2 -->
+        <!-- FEATURED 2 -->
 
-        <div
+        <article
           class="featured-card"
           onclick="cargarJuego(
             'https://html5.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a/',
@@ -1018,17 +2119,74 @@
           <img
             src="https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg"
             alt="Runner Arcade"
+            loading="lazy"
           >
+
 
           <div class="featured-overlay">
 
-            <div class="featured-title">
-              🏃 Runner Arcade
+            <div class="featured-info">
+
+              <div class="featured-title">
+                🏃 Runner Arcade
+              </div>
+
+              <div class="featured-category">
+                Acción · ★ 4.6
+              </div>
+
             </div>
 
           </div>
 
-        </div>
+        </article>
+
+
+        <!-- FEATURED 3 -->
+
+        <article
+          class="featured-card"
+          onclick="mostrarProximamente()"
+        >
+
+          <div
+            style="
+              width:100%;
+              height:100%;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              background:
+                radial-gradient(
+                  circle,
+                  rgba(139,61,255,.25),
+                  transparent 55%
+                ),
+                #0b1320;
+              font-size:4rem;
+            "
+          >
+            🕹️
+          </div>
+
+
+          <div class="featured-overlay">
+
+            <div class="featured-info">
+
+              <div class="featured-title">
+                🕹️ Próximamente
+              </div>
+
+              <div class="featured-category">
+                Más juegos en camino
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
 
 
       </div>
@@ -1037,28 +2195,129 @@
 
 
     <!-- =================================================
-         TODOS LOS JUEGOS
+         CATEGORÍAS
     ================================================== -->
 
-    <section id="nuevos">
+    <section id="categorias">
 
-      <h2 class="section-title">
-        🎮 Todos los juegos
-      </h2>
+      <div class="section-header">
+
+        <h2 class="section-title">
+
+          <span class="line"></span>
+
+          🏷️ Categorías
+
+        </h2>
+
+      </div>
+
+
+      <div class="categories">
+
+        <button
+          class="category-btn active"
+          data-category="todos"
+        >
+          🎮 Todos
+        </button>
+
+        <button
+          class="category-btn"
+          data-category="carreras"
+        >
+          🏎️ Carreras
+        </button>
+
+        <button
+          class="category-btn"
+          data-category="accion"
+        >
+          ⚔️ Acción
+        </button>
+
+        <button
+          class="category-btn"
+          data-category="arcade"
+        >
+          🕹️ Arcade
+        </button>
+
+        <button
+          class="category-btn"
+          data-category="deportes"
+        >
+          ⚽ Deportes
+        </button>
+
+        <button
+          class="category-btn"
+          data-category="puzzle"
+        >
+          🧩 Puzzle
+        </button>
+
+        <button
+          class="category-btn"
+          data-category="aventura"
+        >
+          🗺️ Aventura
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         AD
+    ================================================== -->
+
+    <div class="ad">
+      ESPACIO PUBLICITARIO
+    </div>
+
+
+    <!-- =================================================
+         JUEGOS
+    ================================================== -->
+
+    <section id="juegos">
+
+
+      <div class="section-header">
+
+        <h2 class="section-title">
+
+          <span class="line"></span>
+
+          🎮 Todos los juegos
+
+        </h2>
+
+
+        <span
+          id="gameCounter"
+          class="section-link"
+        >
+          2 juegos
+        </span>
+
+      </div>
 
 
       <div
-        class="grid-games"
         id="gamesGrid"
+        class="games-grid"
       >
 
 
         <!-- =============================================
-             JUEGO 1
+             MOTO X3M
         ============================================== -->
 
-        <div
-          class="card game-item"
+        <article
+          class="game-card game-item"
           data-name="moto x3m"
           data-category="carreras"
           onclick="cargarJuego(
@@ -1067,48 +2326,58 @@
           )"
         >
 
-          <img
-            src="https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg"
-            alt="Moto X3M"
-            loading="lazy"
-          >
+          <div class="game-image">
 
-          <div class="card-info">
+            <img
+              src="https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg"
+              alt="Moto X3M"
+              loading="lazy"
+            >
 
-            <div class="card-title">
+            <span class="game-badge">
+              Popular
+            </span>
+
+          </div>
+
+
+          <div class="game-info">
+
+            <div class="game-title">
               Moto X3M
             </div>
 
-            <div class="card-tag">
-              🏁 Carreras
+            <div class="game-category">
+              🏎️ Carreras
             </div>
 
-            <div class="card-bottom">
+
+            <div class="game-bottom">
 
               <span class="rating">
                 ★ 4.8
               </span>
 
               <button
-                class="btn-play"
+                class="play-button"
                 type="button"
               >
-                Jugar
+                JUGAR
               </button>
 
             </div>
 
           </div>
 
-        </div>
+        </article>
 
 
         <!-- =============================================
-             JUEGO 2
+             RUNNER
         ============================================== -->
 
-        <div
-          class="card game-item"
+        <article
+          class="game-card game-item"
           data-name="runner arcade"
           data-category="accion"
           onclick="cargarJuego(
@@ -1117,80 +2386,87 @@
           )"
         >
 
-          <img
-            src="https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg"
-            alt="Runner Arcade"
-            loading="lazy"
-          >
+          <div class="game-image">
 
-          <div class="card-info">
+            <img
+              src="https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg"
+              alt="Runner Arcade"
+              loading="lazy"
+            >
 
-            <div class="card-title">
+            <span class="game-badge new">
+              Nuevo
+            </span>
+
+          </div>
+
+
+          <div class="game-info">
+
+            <div class="game-title">
               Runner Arcade
             </div>
 
-            <div class="card-tag">
+            <div class="game-category">
               ⚡ Acción
             </div>
 
-            <div class="card-bottom">
+
+            <div class="game-bottom">
 
               <span class="rating">
                 ★ 4.6
               </span>
 
               <button
-                class="btn-play"
+                class="play-button"
                 type="button"
               >
-                Jugar
+                JUGAR
               </button>
 
             </div>
 
           </div>
 
-        </div>
+        </article>
 
 
       </div>
 
 
-      <!-- MENSAJE DE BÚSQUEDA -->
+      <!-- NO RESULTS -->
 
       <div id="no-results">
 
-        <h3>
-          🔎 No encontramos ese juego
-        </h3>
+        <strong>
+          🔎 No encontramos juegos
+        </strong>
 
-        <p>
-          Prueba con otro nombre.
-        </p>
+        Prueba con otro nombre o categoría.
 
       </div>
+
 
     </section>
 
 
     <!-- =================================================
-         REPRODUCTOR
+         PLAYER
     ================================================== -->
 
     <section id="game-container">
 
-      <div class="game-header">
+
+      <div class="player-header">
 
         <div>
 
-          <span class="game-label">
+          <div class="player-label">
             AHORA JUGANDO
-          </span>
+          </div>
 
-          <div
-            id="current-game-title"
-            class="game-title"
-          >
+          <div id="current-game-title">
             Juego
           </div>
 
@@ -1198,11 +2474,11 @@
 
 
         <button
-          class="close-btn"
-          onclick="cerrarJuego()"
+          class="close-button"
           type="button"
+          onclick="cerrarJuego()"
         >
-          ✕ Cerrar
+          ✕ CERRAR
         </button>
 
       </div>
@@ -1216,22 +2492,21 @@
       ></iframe>
 
 
-      <div class="game-message">
+      <div class="player-footer">
 
-        Si el juego no carga, puede que el proveedor
-        no permita reproducirlo dentro de otros sitios.
+        🎮 Juego cargado directamente
+        desde el navegador.
 
       </div>
+
 
     </section>
 
 
-    <!-- PUBLICIDAD INFERIOR -->
+    <!-- AD BOTTOM -->
 
-    <div class="ad-container">
-
+    <div class="ad">
       ESPACIO PUBLICITARIO
-
     </div>
 
 
@@ -1244,15 +2519,83 @@
 
   <footer>
 
-    <strong>
-      🎮 JuegosGratis.site
-    </strong>
 
-    <br>
+    <div class="footer-inner">
 
-    <span>
-      Juegos gratuitos online · © 2026
-    </span>
+
+      <div class="footer-brand">
+
+        <strong>
+          🎮 JuegosGratis.site
+        </strong>
+
+        Juegos gratuitos online para jugar
+        directamente desde tu navegador.
+        Sin instalaciones.
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>
+          SITIO
+        </h3>
+
+        <a href="#inicio">
+          Inicio
+        </a>
+
+        <a href="#juegos">
+          Juegos
+        </a>
+
+        <a href="#categorias">
+          Categorías
+        </a>
+
+        <a href="#populares">
+          Populares
+        </a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>
+          INFORMACIÓN
+        </h3>
+
+        <a href="#">
+          Privacidad
+        </a>
+
+        <a href="#">
+          Cookies
+        </a>
+
+        <a href="#">
+          Términos
+        </a>
+
+        <a href="#">
+          Contacto
+        </a>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="copyright">
+
+      © 2026 JuegosGratis.site ·
+      Todos los derechos reservados.
+
+    </div>
+
 
   </footer>
 
@@ -1263,50 +2606,71 @@
 
   <script>
 
-    /*
-     * =====================================================
-     * CARGAR JUEGO
-     * =====================================================
-     */
+
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+
+    const gameItems =
+      document.querySelectorAll(".game-item");
+
+
+    const noResults =
+      document.getElementById("no-results");
+
+
+    const gameCounter =
+      document.getElementById("gameCounter");
+
+
+    const categoryButtons =
+      document.querySelectorAll(".category-btn");
+
+
+    let currentCategory = "todos";
+
+
+    /* =====================================================
+       CARGAR JUEGO
+    ===================================================== */
 
     function cargarJuego(url, nombre) {
 
       const container =
-        document.getElementById("game-container");
+        document.getElementById(
+          "game-container"
+        );
+
 
       const frame =
-        document.getElementById("game-frame");
+        document.getElementById(
+          "game-frame"
+        );
+
 
       const title =
-        document.getElementById("current-game-title");
+        document.getElementById(
+          "current-game-title"
+        );
 
 
-      /*
-       * Cambiamos el título
-       */
-
-      title.textContent = nombre;
+      title.textContent =
+        nombre;
 
 
-      /*
-       * Cargamos el juego
-       */
-
-      frame.src = url;
+      frame.src =
+        url;
 
 
-      /*
-       * Mostramos el reproductor
-       */
-
-      container.style.display = "block";
+      container.style.display =
+        "block";
 
 
-      /*
-       * Bajamos hasta el reproductor
-       */
-
-      setTimeout(function () {
+      setTimeout(function() {
 
         container.scrollIntoView({
           behavior: "smooth",
@@ -1318,114 +2682,180 @@
     }
 
 
-    /*
-     * =====================================================
-     * CERRAR JUEGO
-     * =====================================================
-     */
+    /* =====================================================
+       CERRAR JUEGO
+    ===================================================== */
 
     function cerrarJuego() {
 
       const container =
-        document.getElementById("game-container");
+        document.getElementById(
+          "game-container"
+        );
+
 
       const frame =
-        document.getElementById("game-frame");
+        document.getElementById(
+          "game-frame"
+        );
 
-
-      /*
-       * Detenemos el juego
-       */
 
       frame.src = "";
 
 
-      /*
-       * Ocultamos el reproductor
-       */
-
-      container.style.display = "none";
+      container.style.display =
+        "none";
 
     }
 
 
-    /*
-     * =====================================================
-     * BUSCADOR
-     * =====================================================
-     */
+    /* =====================================================
+       FILTRAR JUEGOS
+    ===================================================== */
 
-    const searchInput =
-      document.getElementById("searchInput");
+    function filtrarJuegos() {
 
-    const gameItems =
-      document.querySelectorAll(".game-item");
-
-    const noResults =
-      document.getElementById("no-results");
+      const search =
+        searchInput.value
+          .toLowerCase()
+          .trim();
 
 
-    searchInput.addEventListener(
-      "input",
-      function () {
-
-        const search =
-          searchInput.value
-            .toLowerCase()
-            .trim();
+      let visible =
+        0;
 
 
-        let visibleGames = 0;
+      gameItems.forEach(function(game) {
 
 
-        gameItems.forEach(function (game) {
-
-          const name =
-            game.dataset.name || "";
-
-          const category =
-            game.dataset.category || "";
+        const name =
+          game.dataset.name
+            .toLowerCase();
 
 
-          const matches =
-            name.includes(search) ||
-            category.includes(search);
+        const category =
+          game.dataset.category
+            .toLowerCase();
 
 
-          if (matches) {
-
-            game.style.display = "flex";
-
-            visibleGames++;
-
-          } else {
-
-            game.style.display = "none";
-
-          }
-
-        });
+        const matchesSearch =
+          name.includes(search) ||
+          category.includes(search);
 
 
-        /*
-         * Mostrar mensaje si no encontramos juegos
-         */
+        const matchesCategory =
+          currentCategory === "todos" ||
+          category === currentCategory;
 
-        if (visibleGames === 0) {
 
-          noResults.style.display = "block";
+        if (
+          matchesSearch &&
+          matchesCategory
+        ) {
+
+          game.style.display =
+            "";
+
+          visible++;
 
         } else {
 
-          noResults.style.display = "none";
+          game.style.display =
+            "none";
 
         }
+
+      });
+
+
+      gameCounter.textContent =
+        visible +
+        (visible === 1
+          ? " juego"
+          : " juegos");
+
+
+      if (visible === 0) {
+
+        noResults.style.display =
+          "block";
+
+      } else {
+
+        noResults.style.display =
+          "none";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       BUSCADOR
+    ===================================================== */
+
+    searchInput.addEventListener(
+      "input",
+      filtrarJuegos
+    );
+
+
+    /* =====================================================
+       CATEGORÍAS
+    ===================================================== */
+
+    categoryButtons.forEach(
+      function(button) {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+
+            categoryButtons.forEach(
+              function(btn) {
+
+                btn.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            currentCategory =
+              button.dataset.category;
+
+
+            filtrarJuegos();
+
+          }
+        );
 
       }
     );
 
 
+    /* =====================================================
+       PRÓXIMAMENTE
+    ===================================================== */
+
+    function mostrarProximamente() {
+
+      alert(
+        "🎮 ¡Próximamente!\n\nEstamos preparando más juegos para JuegosGratis.site."
+      );
+
+    }
+
+
   </script>
+
 
 </body>
 </html>
