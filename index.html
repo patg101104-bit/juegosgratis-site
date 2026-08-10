@@ -13,23 +13,30 @@
 
     <title>JuegosGratis</title>
 
+
     <style>
 
         :root {
+
             --bg-dark: #07101a;
             --bg-header: #081522;
             --bg-card: #0c1b2b;
             --card-border: #1b354d;
+
             --accent-cyan: #00f2fe;
             --accent-purple: #7928ca;
             --accent-pink: #ff3355;
+
             --text-main: #f1f5f9;
             --text-muted: #8fa3b8;
+
         }
 
 
         * {
+
             box-sizing: border-box;
+
             margin: 0;
             padding: 0;
 
@@ -40,115 +47,153 @@
                 "Segoe UI",
                 Roboto,
                 sans-serif;
+
         }
 
 
         body {
+
             background: var(--bg-dark);
+
             color: var(--text-main);
+
             min-height: 100vh;
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            HEADER
-        ========================================== */
+        ============================== */
 
         header {
+
             background: var(--bg-header);
-            border-bottom: 1px solid var(--card-border);
+
+            border-bottom:
+                1px solid var(--card-border);
 
             position: sticky;
+
             top: 0;
 
             z-index: 1000;
+
         }
 
 
         .header-inner {
+
             max-width: 1200px;
+
             margin: auto;
 
             padding: 15px 20px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             gap: 20px;
+
         }
 
 
         .logo {
+
             color: white;
+
             text-decoration: none;
 
             font-size: 1.4rem;
+
             font-weight: 900;
+
         }
 
 
         .logo span {
-            color: var(--accent-cyan);
+
+            color:
+                var(--accent-cyan);
+
         }
 
 
         .nav-links {
+
             display: flex;
+
             gap: 15px;
 
             list-style: none;
+
         }
 
 
         .nav-links button {
+
             background: none;
+
             border: none;
 
-            color: var(--text-muted);
+            color:
+                var(--text-muted);
 
             cursor: pointer;
 
             font-weight: 700;
+
         }
 
 
         .nav-links button:hover {
-            color: var(--accent-cyan);
+
+            color:
+                var(--accent-cyan);
+
         }
 
 
         .search-box input {
+
             width: 220px;
 
             padding: 10px 15px;
 
             border-radius: 20px;
 
-            border: 1px solid var(--card-border);
+            border:
+                1px solid var(--card-border);
 
             background: #0d1f35;
 
             color: white;
 
             outline: none;
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            MAIN
-        ========================================== */
+        ============================== */
 
         main {
+
             max-width: 1200px;
 
             margin: auto;
 
             padding: 30px 20px;
+
         }
 
 
         .hero {
+
             padding: 50px 30px;
 
             border-radius: 15px;
@@ -162,42 +207,56 @@
                     rgba(121,40,202,.15)
                 );
 
-            border: 1px solid var(--card-border);
+            border:
+                1px solid var(--card-border);
+
         }
 
 
         .hero h1 {
+
             font-size: 3rem;
 
             margin-bottom: 15px;
+
         }
 
 
         .hero h1 span {
-            color: var(--accent-cyan);
+
+            color:
+                var(--accent-cyan);
+
         }
 
 
         .hero p {
-            color: var(--text-muted);
+
+            color:
+                var(--text-muted);
 
             max-width: 650px;
 
             line-height: 1.6;
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            ADS
-        ========================================== */
+        ============================== */
 
         .ad-container {
+
             height: 90px;
 
-            border: 1px dashed #29445c;
+            border:
+                1px dashed #29445c;
 
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             color: #52677c;
@@ -205,23 +264,27 @@
             margin: 30px 0;
 
             border-radius: 10px;
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            SECTION
-        ========================================== */
+        ============================== */
 
         .section-title {
+
             margin-bottom: 20px;
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            GAME GRID
-        ========================================== */
+        ============================== */
 
         .games-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -231,17 +294,21 @@
                 );
 
             gap: 20px;
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            GAME CARD
-        ========================================== */
+        ============================== */
 
         .game-card {
-            background: var(--bg-card);
 
-            border: 1px solid var(--card-border);
+            background:
+                var(--bg-card);
+
+            border:
+                1px solid var(--card-border);
 
             border-radius: 12px;
 
@@ -250,61 +317,80 @@
             cursor: pointer;
 
             transition: .2s;
+
         }
 
 
         .game-card:hover {
-            transform: translateY(-5px);
 
-            border-color: var(--accent-cyan);
+            transform:
+                translateY(-5px);
+
+            border-color:
+                var(--accent-cyan);
 
             box-shadow:
                 0 10px 25px
                 rgba(0,242,254,.15);
+
         }
 
 
         .game-image {
+
             width: 100%;
 
-            aspect-ratio: 1 / .75;
+            aspect-ratio:
+                1 / .75;
 
             background: #000;
+
         }
 
 
         .game-image img {
+
             width: 100%;
+
             height: 100%;
 
             object-fit: cover;
 
             display: block;
+
         }
 
 
         .game-info {
+
             padding: 15px;
+
         }
 
 
         .game-title {
+
             font-weight: 800;
 
             margin-bottom: 5px;
+
         }
 
 
         .game-category {
-            color: var(--text-muted);
+
+            color:
+                var(--text-muted);
 
             font-size: .8rem;
 
             margin-bottom: 10px;
+
         }
 
 
         .play-button {
+
             background:
                 linear-gradient(
                     135deg,
@@ -323,12 +409,13 @@
             font-weight: 800;
 
             cursor: pointer;
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            PLAYER
-        ========================================== */
+        ============================== */
 
         #game-container {
 
@@ -346,6 +433,7 @@
             padding: 20px;
 
             overflow: auto;
+
         }
 
 
@@ -365,6 +453,7 @@
             border-radius: 12px;
 
             overflow: hidden;
+
         }
 
 
@@ -381,13 +470,16 @@
             align-items: center;
 
             background: #081522;
+
         }
 
 
         #game-title {
+
             font-weight: 800;
 
             color: white;
+
         }
 
 
@@ -407,6 +499,7 @@
             font-weight: 800;
 
             cursor: pointer;
+
         }
 
 
@@ -421,12 +514,13 @@
             display: block;
 
             background: #000;
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            FOOTER
-        ========================================== */
+        ============================== */
 
         footer {
 
@@ -436,45 +530,57 @@
 
             text-align: center;
 
-            color: var(--text-muted);
+            color:
+                var(--text-muted);
 
             border-top:
                 1px solid var(--card-border);
+
         }
 
 
-        /* ==========================================
+        /* ==============================
            MOBILE
-        ========================================== */
+        ============================== */
 
         @media(max-width:700px) {
 
             .header-inner {
+
                 flex-wrap: wrap;
+
             }
 
 
             .nav-links {
+
                 order: 3;
 
                 width: 100%;
 
                 justify-content: center;
+
             }
 
 
             .search-box {
+
                 flex: 1;
+
             }
 
 
             .search-box input {
+
                 width: 100%;
+
             }
 
 
             .hero h1 {
+
                 font-size: 2.2rem;
+
             }
 
 
@@ -484,12 +590,14 @@
                     repeat(2,1fr);
 
                 gap: 10px;
+
             }
 
 
             #game-container {
 
                 padding: 0;
+
             }
 
 
@@ -500,7 +608,9 @@
                 border-radius: 0;
 
                 border-left: 0;
+
                 border-right: 0;
+
             }
 
 
@@ -508,6 +618,7 @@
 
                 height:
                     calc(100vh - 55px);
+
             }
 
         }
@@ -520,9 +631,9 @@
 <body>
 
 
-    <!-- ==========================================
+    <!-- ==============================
          HEADER
-    ========================================== -->
+    ============================== -->
 
     <header>
 
@@ -533,7 +644,9 @@
                 href="#"
                 class="logo"
             >
+
                 🎮 JUEGOS<span>GRATIS</span>
+
             </a>
 
 
@@ -541,13 +654,16 @@
 
                 <ul class="nav-links">
 
+
                     <li>
 
                         <button
                             type="button"
                             onclick="mostrarTodos()"
                         >
+
                             INICIO
+
                         </button>
 
                     </li>
@@ -559,7 +675,9 @@
                             type="button"
                             onclick="mostrarPopulares()"
                         >
+
                             POPULARES
+
                         </button>
 
                     </li>
@@ -571,10 +689,13 @@
                             type="button"
                             onclick="mostrarNuevos()"
                         >
+
                             NUEVOS
+
                         </button>
 
                     </li>
+
 
                 </ul>
 
@@ -599,14 +720,15 @@
 
 
 
-    <!-- ==========================================
+    <!-- ==============================
          MAIN
-    ========================================== -->
+    ============================== -->
 
     <main>
 
 
         <section class="hero">
+
 
             <h1>
 
@@ -624,11 +746,10 @@
 
             </p>
 
+
         </section>
 
 
-
-        <!-- ESPACIO PUBLICITARIO -->
 
         <div class="ad-container">
 
@@ -638,13 +759,12 @@
 
 
 
-        <!-- CATÁLOGO -->
-
         <h2 class="section-title">
 
             🎮 Juegos disponibles
 
         </h2>
+
 
 
         <div
@@ -657,9 +777,9 @@
 
 
 
-    <!-- ==========================================
-         GAME PLAYER
-    ========================================== -->
+    <!-- ==============================
+         PLAYER
+    ============================== -->
 
     <div id="game-container">
 
@@ -691,18 +811,43 @@
             </div>
 
 
-            <!--
-                PLAYGAMA IFRAME
 
-                La URL se establece mediante JavaScript
-                utilizando el campo "url" del juego.
+            <!--
+                PLAYGAMA
+
+                Los permisos se mantienen aquí.
+                speaker-selection fue eliminado
+                porque el navegador lo marca como
+                feature no reconocida.
             -->
 
             <iframe
                 id="game-frame"
                 src="about:blank"
-                allow="fullscreen; accelerometer; camera; clipboard-read; clipboard-write; screen-wake-lock; speaker-selection; web-share; geolocation; gyroscope; microphone; xr-spatial-tracking; autoplay; encrypted-media; picture-in-picture; payment; publickey-credentials-get; publickey-credentials-create; storage-access; attribution-reporting; browsing-topics"
-                allowfullscreen
+
+                allow="
+                    fullscreen;
+                    accelerometer;
+                    camera;
+                    clipboard-read;
+                    clipboard-write;
+                    screen-wake-lock;
+                    web-share;
+                    geolocation;
+                    gyroscope;
+                    microphone;
+                    xr-spatial-tracking;
+                    autoplay;
+                    encrypted-media;
+                    picture-in-picture;
+                    payment;
+                    publickey-credentials-get;
+                    publickey-credentials-create;
+                    storage-access;
+                    attribution-reporting;
+                    browsing-topics
+                "
+
                 scrolling="no"
                 frameborder="0">
             </iframe>
@@ -710,14 +855,13 @@
 
         </div>
 
-
     </div>
 
 
 
-    <!-- ==========================================
+    <!-- ==============================
          FOOTER
-    ========================================== -->
+    ============================== -->
 
     <footer>
 
@@ -733,56 +877,75 @@
 
 
 
-    <!-- ==========================================
-         CATÁLOGO
-    ========================================== -->
+    <!-- ==============================
+         CARGAR CATÁLOGO
+    ============================== -->
 
     <script src="juegos.js"></script>
 
 
-    <!-- ==========================================
+
+    <!-- ==============================
          FUNCIONES DE LA PÁGINA
-    ========================================== -->
+    ============================== -->
 
     <script>
 
+
         const gamesGrid =
-            document.getElementById("gamesGrid");
+            document.getElementById(
+                "gamesGrid"
+            );
 
 
         const gameContainer =
-            document.getElementById("game-container");
+            document.getElementById(
+                "game-container"
+            );
 
 
         const gameFrame =
-            document.getElementById("game-frame");
+            document.getElementById(
+                "game-frame"
+            );
 
 
         const gameTitle =
-            document.getElementById("game-title");
+            document.getElementById(
+                "game-title"
+            );
 
 
 
-        // ==========================================
-        // MOSTRAR JUEGOS
-        // ==========================================
+        /* ==============================
+           MOSTRAR JUEGOS
+        ============================== */
 
         function mostrarJuegos(lista) {
 
             gamesGrid.innerHTML = "";
 
 
-            if (!lista || lista.length === 0) {
+            if (
+                !lista ||
+                lista.length === 0
+            ) {
 
                 gamesGrid.innerHTML = `
 
-                    <p>
+                    <p style="
+                        color:#8fa3b8;
+                        padding:20px;
+                    ">
+
                         No encontramos juegos.
+
                     </p>
 
                 `;
 
                 return;
+
             }
 
 
@@ -790,7 +953,9 @@
 
 
                 const card =
-                    document.createElement("article");
+                    document.createElement(
+                        "article"
+                    );
 
 
                 card.className =
@@ -842,11 +1007,16 @@
 
                 card.addEventListener(
                     "click",
-                    () => abrirJuego(juego.id)
+                    () =>
+                        abrirJuego(
+                            juego.id
+                        )
                 );
 
 
-                gamesGrid.appendChild(card);
+                gamesGrid.appendChild(
+                    card
+                );
 
             });
 
@@ -854,9 +1024,9 @@
 
 
 
-        // ==========================================
-        // ABRIR JUEGO
-        // ==========================================
+        /* ==============================
+           ABRIR JUEGO
+        ============================== */
 
         function abrirJuego(id) {
 
@@ -873,11 +1043,12 @@
                 );
 
                 return;
+
             }
 
 
             console.log(
-                "🎮 Abriendo juego:",
+                "🎮 Abriendo:",
                 juego.nombre
             );
 
@@ -901,9 +1072,9 @@
 
 
 
-        // ==========================================
-        // CERRAR JUEGO
-        // ==========================================
+        /* ==============================
+           CERRAR JUEGO
+        ============================== */
 
         function cerrarJuego() {
 
@@ -923,9 +1094,9 @@
 
 
 
-        // ==========================================
-        // MOSTRAR TODOS
-        // ==========================================
+        /* ==============================
+           INICIO
+        ============================== */
 
         function mostrarTodos() {
 
@@ -937,9 +1108,9 @@
 
 
 
-        // ==========================================
-        // MOSTRAR POPULARES
-        // ==========================================
+        /* ==============================
+           POPULARES
+        ============================== */
 
         function mostrarPopulares() {
 
@@ -951,9 +1122,9 @@
 
 
 
-        // ==========================================
-        // MOSTRAR NUEVOS
-        // ==========================================
+        /* ==============================
+           NUEVOS
+        ============================== */
 
         function mostrarNuevos() {
 
@@ -965,9 +1136,9 @@
 
 
 
-        // ==========================================
-        // BUSCADOR
-        // ==========================================
+        /* ==============================
+           BUSCADOR
+        ============================== */
 
         function buscarEnCatalogo(texto) {
 
@@ -979,16 +1150,24 @@
 
 
 
-        // ==========================================
-        // INICIAR CATÁLOGO
-        // ==========================================
+        /* ==============================
+           CUANDO EL CATÁLOGO ESTÁ LISTO
+        ============================== */
 
-        mostrarTodos();
+        document.addEventListener(
+            "catalogoCargado",
+            function() {
+
+                console.log(
+                    "🎮 Catálogo listo para mostrar."
+                );
 
 
-        console.log(
-            "🎮 JuegosGratis iniciado correctamente"
+                mostrarTodos();
+
+            }
         );
+
 
     </script>
 
