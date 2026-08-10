@@ -1,37 +1,30 @@
 /*
 =========================================================
- JUEGOSGRATIS.SITE
+ JUEGOSGRATIS
  Catálogo de videojuegos
-=========================================================
-
- Para agregar un juego nuevo, copia uno de los objetos
- de abajo y cambia sus datos.
-
+ GameDistribution
 =========================================================
 */
 
 const juegos = [
 
-    /*
-    =====================================================
-    JUEGO 1
-    =====================================================
-    */
-
     {
         id: "moto-x3m",
 
-        nombre: "Moto X3M",
+        nombre: "Moto X3M Bike Race Game",
 
         categoria: "carreras",
 
         rating: 4.8,
 
         imagen:
-            "https://img.gamedistribution.com/a26b2b6473ba418bb208471c66f7f329-512x512.jpeg",
+            "https://img.gamedistribution.com/5b0abd4c0faa4f5eb190a9a16d5a1b4c-512x512.jpeg",
 
         url:
-            "https://html5.gamedistribution.com/rvvAS300/a26b2b6473ba418bb208471c66f7f329/",
+            "https://html5.gamedistribution.com/5b0abd4c0faa4f5eb190a9a16d5a1b4c/",
+
+        paginaGD:
+            "https://www.gamedistribution.com/games/moto-x3m-bike-race-game/",
 
         destacado: true,
 
@@ -39,26 +32,23 @@ const juegos = [
     },
 
 
-    /*
-    =====================================================
-    JUEGO 2
-    =====================================================
-    */
-
     {
-        id: "runner-arcade",
+        id: "fireboy-watergirl-7",
 
-        nombre: "Runner Arcade",
+        nombre: "Fireboy & Watergirl 7: and Friends",
 
-        categoria: "accion",
+        categoria: "aventura",
 
-        rating: 4.6,
+        rating: 4.9,
 
         imagen:
-            "https://img.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a-512x512.jpeg",
+            "https://img.gamedistribution.com/d4a3629101574bc39bd8f9d1888ca58e-512x512.jpg",
 
         url:
-            "https://html5.gamedistribution.com/f920279c09d54e4f9b8c0c1efdfbe53a/",
+            "https://html5.gamedistribution.com/d4a3629101574bc39bd8f9d1888ca58e/",
+
+        paginaGD:
+            "https://www.gamedistribution.com/games/fireboy-and-watergirl-7%3A-and-friends/",
 
         destacado: true,
 
@@ -66,46 +56,30 @@ const juegos = [
     },
 
 
-    /*
-    =====================================================
-    JUEGO 3
-    =====================================================
-
-    DATOS PROVISIONALES
-
-    Game ID:
-    d6fa0baa88bd4e0da0ffb22ffc4ec347
-
-    Falta confirmar:
-    - Nombre
-    - Categoría
-    - Imagen oficial
-    - URL definitiva
-    =====================================================
-    */
-
     {
-        id: "juego-gd-003",
+        id: "stickman-hook",
 
-        nombre: "Juego GameDistribution",
+        nombre: "Stickman Hook",
 
-        categoria: "arcade",
+        categoria: "accion",
 
-        rating: 4.5,
+        rating: 4.8,
 
         imagen:
-            "https://img.gamedistribution.com/d6fa0baa88bd4e0da0ffb22ffc4ec347-512x512.jpeg",
+            "https://img.gamedistribution.com/ebf2d27848674269b5e3506f0f409978-512x512.jpeg",
 
         url:
-            "https://html5.gamedistribution.com/d6fa0baa88bd4e0da0ffb22ffc4ec347/",
+            "https://html5.gamedistribution.com/rvvASMiM/ebf2d27848674269b5e3506f0f409978/",
 
-        destacado: false,
+        paginaGD:
+            "",
 
-        nuevo: true
+        destacado: true,
+
+        nuevo: false
     }
 
 ];
-
 
 
 /*
@@ -115,24 +89,12 @@ const juegos = [
 */
 
 
-/*
----------------------------------------------------------
- Obtener todos los juegos
----------------------------------------------------------
-*/
-
 function obtenerJuegos() {
 
     return juegos;
 
 }
 
-
-/*
----------------------------------------------------------
- Buscar un juego por ID
----------------------------------------------------------
-*/
 
 function obtenerJuegoPorId(id) {
 
@@ -142,12 +104,6 @@ function obtenerJuegoPorId(id) {
 
 }
 
-
-/*
----------------------------------------------------------
- Obtener juegos por categoría
----------------------------------------------------------
-*/
 
 function obtenerJuegosPorCategoria(categoria) {
 
@@ -166,12 +122,6 @@ function obtenerJuegosPorCategoria(categoria) {
 }
 
 
-/*
----------------------------------------------------------
- Obtener juegos destacados
----------------------------------------------------------
-*/
-
 function obtenerJuegosDestacados() {
 
     return juegos.filter(
@@ -180,12 +130,6 @@ function obtenerJuegosDestacados() {
 
 }
 
-
-/*
----------------------------------------------------------
- Obtener juegos nuevos
----------------------------------------------------------
-*/
 
 function obtenerJuegosNuevos() {
 
@@ -196,22 +140,18 @@ function obtenerJuegosNuevos() {
 }
 
 
-/*
----------------------------------------------------------
- Buscar juegos por nombre
----------------------------------------------------------
-*/
-
 function buscarJuegos(texto) {
 
     const busqueda =
         texto.toLowerCase().trim();
+
 
     if (!busqueda) {
 
         return juegos;
 
     }
+
 
     return juegos.filter(
         juego =>
@@ -223,17 +163,11 @@ function buscarJuegos(texto) {
 }
 
 
-/*
-=========================================================
- INFORMACIÓN DEL CATÁLOGO
-=========================================================
-*/
-
 console.log(
-    "🎮 JuegosGratis.site"
+    "🎮 JuegosGratis - catálogo cargado"
 );
 
 console.log(
-    "Juegos disponibles:",
+    "🎮 Juegos disponibles:",
     juegos.length
 );
