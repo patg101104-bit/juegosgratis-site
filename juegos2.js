@@ -1,24 +1,15 @@
 ```javascript
-/* =========================================================
-   JUEGOSGRATIS
-   CATÁLOGO PLAYGAMA
-   ========================================================= */
+"use strict";
 
 let juegos = [];
 
 const CATALOGO_URL = "games.json";
-
-
-/* =========================================================
-   CONFIGURACIÓN
-   ========================================================= */
-
-const JUEGOS_POR_PAGINA = 24;
+const JUEGOS_POR_CARGA = 48;
 
 
 /* =========================================================
    LIMPIAR URL
-   ========================================================= */
+========================================================= */
 
 function limpiarUrl(url) {
 
@@ -28,16 +19,6 @@ function limpiarUrl(url) {
 
     let resultado = url.trim();
 
-    /*
-        Convierte:
-
-        [texto](https://ejemplo.com)
-
-        en:
-
-        https://ejemplo.com
-    */
-
     const markdown = resultado.match(
         /^\[.*?\]\((https?:\/\/.*?)\)$/
     );
@@ -46,22 +27,15 @@ function limpiarUrl(url) {
         resultado = markdown[1];
     }
 
-    /*
-        Elimina comillas exteriores.
-    */
-
-    resultado = resultado.replace(
-        /^["']|["']$/g,
-        ""
-    );
+    resultado = resultado.replace(/^["']|["']$/g, "");
 
     return resultado;
 }
 
 
 /* =========================================================
-   OBTENER IMAGEN
-   ========================================================= */
+   IMAGEN
+========================================================= */
 
 function obtenerImagen(game) {
 
@@ -70,50 +44,30 @@ function obtenerImagen(game) {
         game.images.length > 0
     ) {
 
-        const imagen =
-            limpiarUrl(
-                game.images[0]
-            );
+        const imagen = limpiarUrl(
+            game.images[0]
+        );
 
         if (imagen) {
             return imagen;
         }
     }
-
 
     if (game.imageSrc) {
-
-        const imagen =
-            limpiarUrl(
-                game.imageSrc
-            );
-
-        if (imagen) {
-            return imagen;
-        }
+        return limpiarUrl(game.imageSrc);
     }
-
 
     if (game.imageSrcSquare) {
-
-        const imagen =
-            limpiarUrl(
-                game.imageSrcSquare
-            );
-
-        if (imagen) {
-            return imagen;
-        }
+        return limpiarUrl(game.imageSrcSquare);
     }
-
 
     return "";
 }
 
 
 /* =========================================================
-   OBTENER CATEGORÍA
-   ========================================================= */
+   CATEGORIA
+========================================================= */
 
 function obtenerCategoria(game) {
 
@@ -122,40 +76,38 @@ function obtenerCategoria(game) {
         game.genres.length > 0
     ) {
 
-        return game.genres[0];
-
+        return String(
+            game.genres[0]
+        );
     }
-
 
     if (
         Array.isArray(game.tags) &&
         game.tags.length > 0
     ) {
 
-        return game.tags[0];
-
+        return String(
+            game.tags[0]
+        );
     }
-
 
     return "otros";
 }
 
 
 /* =========================================================
-   CREAR ID
-   ========================================================= */
+   ID
+========================================================= */
 
 function crearIdJuego(game) {
 
     if (game.slug) {
-        return game.slug;
+        return String(game.slug);
     }
-
 
     if (game.id) {
         return String(game.id);
     }
-
 
     return "game-" +
         Math.random()
@@ -166,7 +118,7 @@ function crearIdJuego(game) {
 
 /* =========================================================
    CONVERTIR JUEGO
-   ========================================================= */
+========================================================= */
 
 function convertirJuego(game) {
 
@@ -174,133 +126,95 @@ function convertirJuego(game) {
         return null;
     }
 
-
-    const url =
-        limpiarUrl(
-            game.gameURL
-        );
-
+    const url = limpiarUrl(
+        game.gameURL
+    );
 
     if (!url) {
         return null;
     }
 
-
     return {
 
-        id:
-            crearIdJuego(game),
-
+        id: crearIdJuego(game),
 
         nombre:
             game.title ||
             "Juego sin título",
 
-
         categoria:
             obtenerCategoria(game),
 
-
-        rating:
-            0,
-
+        rating: 0,
 
         imagen:
             obtenerImagen(game),
 
-
-        url:
-            url,
-
+        url: url,
 
         paginaGD:
             limpiarUrl(
                 game.playgamaGameUrl
             ),
 
+        destacado: false,
 
-        destacado:
-            false,
-
-
-        nuevo:
-            false,
-
+        nuevo: false,
 
         playgamaId:
             game.id
                 ? String(game.id)
                 : "",
 
-
         slug:
             game.slug || "",
-
 
         descripcion:
             game.description || "",
 
-
         instrucciones:
             game.howToPlayText || "",
-
 
         generos:
             Array.isArray(game.genres)
                 ? game.genres
                 : [],
 
-
         etiquetas:
             Array.isArray(game.tags)
                 ? game.tags
                 : [],
 
-
         idiomas:
-            Array.isArray(
-                game.supportedLanguages
-            )
+            Array.isArray(game.supportedLanguages)
                 ? game.supportedLanguages
                 : [],
 
-
         mobileReady:
-            Array.isArray(
-                game.mobileReady
-            )
+            Array.isArray(game.mobileReady)
                 ? game.mobileReady
                 : [],
 
-
         comprasDentroDelJuego:
-            game.inGamePurchases ||
-            "No",
-
+            game.inGamePurchases || "No",
 
         orientacion:
-            game.screenOrientation ||
-            {},
+            game.screenOrientation || {},
 
-
-        playgama:
-            true
-
+        playgama: true
     };
-
 }
 
 
 /* =========================================================
-   CARGAR CATÁLOGO
-   ========================================================= */
+   CARGAR CATALOGO
+========================================================= */
 
 async function cargarCatalogo() {
 
     console.log(
         "🎮 Cargando games.json..."
     );
-
 
     try {
 
@@ -330,10 +244,6 @@ async function cargarCatalogo() {
         let juegosOriginales = [];
 
 
-        /*
-            Formato principal de Playgama.
-        */
-
         if (
             Array.isArray(
                 datos.segments
@@ -361,11 +271,6 @@ async function cargarCatalogo() {
         }
 
 
-        /*
-            Compatibilidad con otros
-            formatos posibles.
-        */
-
         if (
             juegosOriginales.length === 0 &&
             Array.isArray(datos.hits)
@@ -383,44 +288,34 @@ async function cargarCatalogo() {
         );
 
 
-        /*
-            Convertir juegos.
-        */
-
-        const convertidos =
-            juegosOriginales
-                .map(
-                    convertirJuego
-                )
-                .filter(Boolean);
-
-
-        /*
-            Eliminar duplicados.
-        */
-
         const mapa =
             new Map();
 
 
-        convertidos.forEach(
-            juego => {
+        for (
+            const game
+            of juegosOriginales
+        ) {
 
-                if (
-                    !mapa.has(
-                        juego.id
-                    )
-                ) {
+            const convertido =
+                convertirJuego(game);
 
-                    mapa.set(
-                        juego.id,
-                        juego
-                    );
 
-                }
+            if (
+                convertido &&
+                !mapa.has(
+                    convertido.id
+                )
+            ) {
+
+                mapa.set(
+                    convertido.id,
+                    convertido
+                );
 
             }
-        );
+
+        }
 
 
         juegos =
@@ -434,38 +329,6 @@ async function cargarCatalogo() {
             juegos.length
         );
 
-
-        /*
-            Comprobar RIVALS FPS.
-        */
-
-        const rivals =
-            juegos.find(
-                juego =>
-                    juego.id ===
-                    "rivals-fps-online-shooter"
-            );
-
-
-        if (rivals) {
-
-            console.log(
-                "🔫 RIVALS FPS encontrado."
-            );
-
-        } else {
-
-            console.log(
-                "ℹ️ RIVALS FPS no está dentro de este catálogo."
-            );
-
-        }
-
-
-        /*
-            Avisar al index.html
-            de que terminó la carga.
-        */
 
         document.dispatchEvent(
             new CustomEvent(
@@ -497,8 +360,8 @@ async function cargarCatalogo() {
 
 
 /* =========================================================
-   FUNCIONES DEL CATÁLOGO
-   ========================================================= */
+   FUNCIONES DEL CATALOGO
+========================================================= */
 
 function obtenerJuegos() {
 
@@ -532,7 +395,7 @@ function obtenerJuegosPorCategoria(
 
 
     const buscada =
-        String(categoria)
+        categoria
             .toLowerCase()
             .trim();
 
@@ -553,7 +416,6 @@ function obtenerJuegosPorCategoria(
 
             return categorias.some(
                 categoriaJuego =>
-
                     String(
                         categoriaJuego
                     )
@@ -569,58 +431,31 @@ function obtenerJuegosPorCategoria(
 }
 
 
-/* =========================================================
-   POPULARES
-   ========================================================= */
-
 function obtenerJuegosDestacados() {
-
-    /*
-        Mientras Playgama no nos entregue
-        una puntuación/ranking utilizable,
-        tomamos los primeros juegos del
-        catálogo como selección destacada.
-    */
 
     return juegos.slice(
         0,
         Math.min(
-            JUEGOS_POR_PAGINA,
+            JUEGOS_POR_CARGA,
             juegos.length
         )
     );
 
 }
 
-
-/* =========================================================
-   NUEVOS
-   ========================================================= */
 
 function obtenerJuegosNuevos() {
 
-    /*
-        El JSON actual no proporciona
-        una fecha de publicación fiable.
-
-        Por ahora utilizamos el comienzo
-        del catálogo como selección.
-    */
-
     return juegos.slice(
         0,
         Math.min(
-            JUEGOS_POR_PAGINA,
+            JUEGOS_POR_CARGA,
             juegos.length
         )
     );
 
 }
 
-
-/* =========================================================
-   BUSCAR
-   ========================================================= */
 
 function buscarJuegos(texto) {
 
@@ -648,8 +483,6 @@ function buscarJuegos(texto) {
 
                 juego.descripcion,
 
-                juego.instrucciones,
-
                 ...juego.generos,
 
                 ...juego.etiquetas
@@ -669,10 +502,6 @@ function buscarJuegos(texto) {
 }
 
 
-/* =========================================================
-   CATEGORÍAS
-   ========================================================= */
-
 function obtenerCategorias() {
 
     const categorias =
@@ -688,9 +517,7 @@ function obtenerCategorias() {
                     if (genero) {
 
                         categorias.add(
-                            String(
-                                genero
-                            )
+                            String(genero)
                         );
 
                     }
@@ -710,17 +537,13 @@ function obtenerCategorias() {
 
 
 /* =========================================================
-   INFORMACIÓN
-   ========================================================= */
+   INICIO
+========================================================= */
 
 console.log(
     "🎮 JuegosGratis - catálogo iniciado"
 );
 
-
-/* =========================================================
-   INICIAR
-   ========================================================= */
 
 cargarCatalogo();
 ```
