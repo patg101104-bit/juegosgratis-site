@@ -882,54 +882,6 @@ function buscarJuegos(texto) {
 
 }
 
-
-/* =========================================================
-   OBTENER CATEGORÍAS
-   ========================================================= */
-
-function obtenerCategorias() {
-
-    const categorias =
-        new Set();
-
-
-    for (
-        const juego
-        of juegos
-    ) {
-
-        for (
-            const genero
-            of juego.generos
-        ) {
-
-            if (genero) {
-
-                categorias.add(
-                    String(
-                        genero
-                    )
-                );
-
-            }
-
-        }
-
-    }
-
-
-    return Array.from(
-        categorias
-    ).sort(
-        (a, b) =>
-            a.localeCompare(
-                b
-            )
-    );
-
-}
-
-
 /* =========================================================
    INICIO
    ========================================================= */
