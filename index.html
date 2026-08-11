@@ -2677,6 +2677,237 @@
         }
 
 
+/* =================================================
+   MOSTRAR CATEGORÍAS
+================================================= */
+
+function mostrarCategorias() {
+
+    const contenedor =
+        document.getElementById(
+            "categoriesScroll"
+        );
+
+
+    if (!contenedor) {
+
+        console.warn(
+            "⚠️ No se encontró categoriesScroll."
+        );
+
+        return;
+
+    }
+
+
+    const categorias =
+        obtenerCategorias();
+
+
+    /*
+       Empezamos limpiando el
+       botón provisional "Todas".
+    */
+
+    contenedor.innerHTML = "";
+
+
+    /*
+       Botón TODAS
+    */
+
+    const botonTodas =
+        document.createElement(
+            "button"
+        );
+
+
+    botonTodas.type =
+        "button";
+
+
+    botonTodas.className =
+        "category-button active";
+
+
+    botonTodas.dataset.category =
+        "todos";
+
+
+    botonTodas.innerHTML = `
+        
+        🎮 Todas
+
+        <span class="category-count">
+
+            ${juegos.length}
+
+        </span>
+
+    `;
+
+
+    botonTodas.addEventListener(
+        "click",
+        function() {
+
+            seleccionarCategoria(
+                "todos",
+                botonTodas
+            );
+
+        }
+    );
+
+
+    contenedor.appendChild(
+        botonTodas
+    );
+
+
+    /*
+       Crear las categorías reales.
+    */
+
+    categorias.forEach(
+        categoria => {
+
+            const boton =
+                document.createElement(
+                    "button"
+                );
+
+
+            boton.type =
+                "button";
+
+
+            boton.className =
+                "category-button";
+
+
+            boton.dataset.category =
+                categoria.nombre;
+
+
+            boton.innerHTML = `
+
+                ${escaparHTML(
+                    categoria.nombre
+                )}
+
+                <span class="category-count">
+
+                    ${categoria.cantidad}
+
+                </span>
+
+            `;
+
+
+            boton.addEventListener(
+                "click",
+                function() {
+
+                    seleccionarCategoria(
+                        categoria.nombre,
+                        boton
+                    );
+
+                }
+            );
+
+
+            contenedor.appendChild(
+                boton
+            );
+
+        }
+    );
+
+}
+
+
+       /* =================================================
+   SELECCIONAR CATEGORÍA
+================================================= */
+
+function seleccionarCategoria(
+    categoria,
+    botonActivo
+) {
+
+    const resultados =
+        obtenerJuegosPorCategoria(
+            categoria
+        );
+
+
+    /*
+       Quitar "active"
+       de todos los botones.
+    */
+
+    document
+        .querySelectorAll(
+            ".category-button"
+        )
+        .forEach(
+            boton => {
+
+                boton.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    /*
+       Activar el botón seleccionado.
+    */
+
+    if (botonActivo) {
+
+        botonActivo.classList.add(
+            "active"
+        );
+
+    }
+
+
+    /*
+       Mostrar los juegos filtrados.
+    */
+
+    mostrarJuegos(
+        resultados,
+        true
+    );
+
+
+    /*
+       Llevar al usuario
+       al catálogo.
+    */
+
+    const titulo =
+        document.querySelector(
+            ".section-header"
+        );
+
+
+    if (titulo) {
+
+        titulo.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+}
+       
         /* =================================================
            MOSTRAR JUEGOS
         ================================================= */
