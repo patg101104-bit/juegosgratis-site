@@ -734,6 +734,83 @@ function obtenerJuegosPorCategoria(
 
 }
 
+/* =========================================================
+   GENERAR CATEGORÍAS
+========================================================= */
+
+function obtenerCategorias() {
+
+    const categorias = new Map();
+
+
+    juegos.forEach(
+        juego => {
+
+            const generos =
+                Array.isArray(
+                    juego.generos
+                )
+                    ? juego.generos
+                    : [];
+
+
+            generos.forEach(
+                genero => {
+
+                    const nombre =
+                        String(
+                            genero || ""
+                        )
+                        .trim();
+
+
+                    if (!nombre) {
+                        return;
+                    }
+
+
+                    const clave =
+                        nombre.toLowerCase();
+
+
+                    if (
+                        !categorias.has(
+                            clave
+                        )
+                    ) {
+
+                        categorias.set(
+                            clave,
+                            {
+                                nombre: nombre,
+                                cantidad: 0
+                            }
+                        );
+
+                    }
+
+
+                    categorias.get(
+                        clave
+                    ).cantidad++;
+
+                }
+            );
+
+        }
+    );
+
+
+    return Array.from(
+        categorias.values()
+    )
+    .sort(
+        (a, b) =>
+            b.cantidad -
+            a.cantidad
+    );
+
+}
 
 /* =========================================================
    DESTACADOS
