@@ -3124,52 +3124,102 @@ function seleccionarCategoria(
 
         function abrirJuego(id) {
 
-            const juego =
-                obtenerJuegoPorId(
-                    id
-                );
+    const juego =
+        obtenerJuegoPorId(id);
 
 
-            if (!juego) {
+    if (!juego) {
 
-                console.error(
-                    "No se encontró el juego:",
-                    id
-                );
+        console.error(
+            "❌ No se encontró el juego:",
+            id
+        );
 
-                return;
+        return;
 
-            }
+    }
 
 
-            console.log(
-                "🎮 Abriendo:",
-                juego.nombre
+    console.log(
+        "🎮 Abriendo:",
+        juego.nombre
+    );
+
+
+    /*
+       =====================================================
+       CREAR URL PROPIA DEL JUEGO
+       =====================================================
+
+       Cada juego utiliza automáticamente
+       el slug que viene desde games.json.
+
+       Ejemplo:
+
+       /juego/fruit-merge
+       /juego/crazy-cars
+       /juego/otro-juego
+
+       No estamos escribiendo ningún juego
+       manualmente.
+    */
+
+    const slug =
+        String(
+            juego.slug || juego.id
+        )
+        .trim();
+
+
+    if (slug) {
+
+        const nuevaRuta =
+            "/juego/" +
+            encodeURIComponent(
+                slug
             );
 
 
-            gameTitle.textContent =
-                juego.nombre;
+        history.pushState(
+            {
+                juegoId:
+                    juego.id
+            },
+            "",
+            nuevaRuta
+        );
+
+    }
 
 
-            gameFrame.src =
-                juego.url;
+    /*
+       =====================================================
+       MOSTRAR JUEGO
+       =====================================================
+    */
+
+    gameTitle.textContent =
+        juego.nombre;
 
 
-            gameContainer.style.display =
-                "block";
+    gameFrame.src =
+        juego.url;
 
 
-            gameContainer.setAttribute(
-                "aria-hidden",
-                "false"
-            );
+    gameContainer.style.display =
+        "block";
 
 
-            document.body.style.overflow =
-                "hidden";
+    gameContainer.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
-        }
+
+    document.body.style.overflow =
+        "hidden";
+
+}
 
 
         /* =================================================
