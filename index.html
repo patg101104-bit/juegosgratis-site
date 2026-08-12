@@ -2587,120 +2587,116 @@
            CREAR TARJETA
         ================================================= */
 
-        function crearTarjeta(juego) {
+       function crearTarjeta(juego) {
 
-            const card =
-                document.createElement(
-                    "article"
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "game-card";
+
+
+    const nombre =
+        escaparHTML(
+            juego.nombre
+        );
+
+
+    const categoria =
+        escaparHTML(
+            juego.categoria
+        );
+
+
+    const imagen =
+        escaparHTML(
+            juego.imagen
+        );
+
+
+    card.innerHTML = `
+
+        <div class="game-image">
+
+            <img
+                src="${imagen}"
+                alt="${nombre}"
+                loading="lazy"
+                decoding="async"
+            >
+
+        </div>
+
+
+        <div class="game-info">
+
+            <div
+                class="game-title"
+                title="${nombre}"
+            >
+
+                ${nombre}
+
+            </div>
+
+
+            <div
+                class="game-category"
+                title="${categoria}"
+            >
+
+                ${categoria}
+
+            </div>
+
+
+            <button
+                class="play-button"
+                type="button"
+            >
+
+                ▶ JUGAR
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    card.addEventListener(
+        "click",
+        function() {
+
+            if (!juego.slug) {
+
+                console.error(
+                    "❌ Este juego no tiene slug:",
+                    juego
                 );
 
+                return;
 
-            card.className =
-                "game-card";
-
-
-            const nombre =
-                escaparHTML(
-                    juego.nombre
-                );
+            }
 
 
-            const categoria =
-                escaparHTML(
-                    juego.categoria
-                );
-
-
-            const imagen =
-                escaparHTML(
-                    juego.imagen
-                );
-
-
-            card.innerHTML = `
-
-                <div class="game-image">
-
-                    <img
-                        src="${imagen}"
-                        alt="${nombre}"
-                        loading="lazy"
-                        decoding="async"
-                    >
-
-                </div>
-
-
-                <div class="game-info">
-
-                    <div
-                        class="game-title"
-                        title="${nombre}"
-                    >
-
-                        ${nombre}
-
-                    </div>
-
-
-                    <div
-                        class="game-category"
-                        title="${categoria}"
-                    >
-
-                        ${categoria}
-
-                    </div>
-
-
-                    <button
-                        class="play-button"
-                        type="button"
-                    >
-
-                        ▶ JUGAR
-
-                    </button>
-
-                </div>
-
-            `;
-
-
-         card.addEventListener(
-    "click",
-    function() {
-
-        if (!juego.slug) {
-
-            console.error(
-                "❌ Este juego no tiene slug:",
-                juego
-            );
-
-            return;
+            window.location.href =
+                "/games/" +
+                encodeURIComponent(
+                    juego.slug
+                ) +
+                "/";
 
         }
+    );
 
 
-        window.location.href =
-            "/games/" +
-            encodeURIComponent(
-                juego.slug
-            ) +
-            "/";
+    return card;
 
-    }
-);
-
-                }
-            );
-
-
-            return card;
-
-        }
-
+}
 
 /* =================================================
    MOSTRAR CATEGORÍAS
