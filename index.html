@@ -2667,13 +2667,28 @@
             `;
 
 
-          card.addEventListener(
+         card.addEventListener(
     "click",
     function() {
 
-        abrirJuego(
-            juego.id
-        );
+        if (!juego.slug) {
+
+            console.error(
+                "❌ Este juego no tiene slug:",
+                juego
+            );
+
+            return;
+
+        }
+
+
+        window.location.href =
+            "/games/" +
+            encodeURIComponent(
+                juego.slug
+            ) +
+            "/";
 
     }
 );
